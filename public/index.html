@@ -661,7 +661,7 @@
     }
     .t-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(3, 1fr);
       gap:24px;
     }
     .t{
@@ -672,6 +672,9 @@
       display:flex; flex-direction:column; gap:20px;
       box-shadow:var(--shadow-soft);
       transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      min-height: auto;
+      height: auto;
+      overflow: visible;
     }
     .t:hover{
       transform:translateY(-4px);
@@ -691,6 +694,11 @@
       color:var(--fg);
       margin:0;
       letter-spacing:-0.008em;
+      overflow: visible;
+      text-overflow: clip;
+      white-space: normal;
+      -webkit-line-clamp: unset;
+      display: block;
     }
     .t-author{
       display:flex; align-items:center; gap:12px;
@@ -1250,11 +1258,7 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
             </div>
-            <p class=”t-quote”
-               data-es=””Reservamos las tres villas para una reunión familiar de 12. Cada pareja tuvo su espacio y compartimos los desayunos en el rancho. Perfecto.””
-               data-en=””We booked all three villas for a family reunion of 12. Each couple had their own villa and we shared breakfasts at the rancho. Perfect.””>
-              “Reservamos las tres villas para una reunión familiar de 12. Cada pareja tuvo su espacio y compartimos los desayunos en el rancho. Perfecto.”
-            </p>
+            <p class=”t-quote”>”Reservamos las tres villas para una reunión familiar de 12. Cada pareja tuvo su espacio y compartimos los desayunos en el rancho. Perfecto.”</p>
             <div class="t-author">
               <div class="t-avatar">FV</div>
               <div>
@@ -1272,11 +1276,7 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
             </div>
-            <p class=”t-quote”
-               data-es=””La villa Iguana fue ideal con los niños — abren la puerta y están en la grama. La comunicación con Rentas Pura Vida, impecable.””
-               data-en=””Iguana villa was perfect with kids — open the door and they're on the grass. Communication with Rentas Pura Vida, flawless.””>
-              “La villa Iguana fue ideal con los niños — abren la puerta y están en la grama. La comunicación con Rentas Pura Vida, impecable.”
-            </p>
+            <p class=”t-quote”>”La villa Iguana fue ideal con los niños — abren la puerta y están en la grama. La comunicación con Rentas Pura Vida, impecable.”</p>
             <div class="t-author">
               <div class="t-avatar">AM</div>
               <div>
@@ -1294,11 +1294,7 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
             </div>
-            <p class="t-quote"
-               data-es="“Volveríamos sin pensarlo. Los atardeceres desde el balcón sur no se parecen a nada que conozcamos.”"
-               data-en="“We'd come back without thinking twice. Sunsets from the south balcony are like nothing we've seen.”">
-              “Volveríamos sin pensarlo. Los atardeceres desde el balcón sur no se parecen a nada que conozcamos.”
-            </p>
+            <p class=”t-quote”>”Volveríamos sin pensarlo. Los atardeceres desde el balcón sur no se parecen a nada que conozcamos.”</p>
             <div class="t-author">
               <div class="t-avatar">SC</div>
               <div>
@@ -1374,8 +1370,8 @@
         document.querySelectorAll('[data-es]').forEach(el => {
           const val = el.getAttribute('data-' + lang);
           if(val == null) return;
-          // some labels contain inline <em> tags
-          if(/[<>]/.test(val)) el.innerHTML = val;
+          // HTML tags or entities (&ldquo; etc) need innerHTML
+          if(/[<>&]/.test(val)) el.innerHTML = val;
           else el.textContent = val;
         });
         langButtons.forEach(btn => {
