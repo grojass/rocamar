@@ -718,6 +718,38 @@
     .t-author .n{font-size:14px; font-weight:500}
     .t-author .m{font-size:12px; color:var(--muted); font-family:var(--font-mono); letter-spacing:0.04em}
 
+    /* ── FAQ ──────────────────────────────────────────────── */
+    .faq{
+      padding-block:clamp(72px, 9vw, 120px);
+    }
+    .faq-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:24px 40px;
+      margin-top:48px;
+    }
+    .faq-item{
+      padding:24px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .faq-q{
+      font-family:var(--font-display);
+      font-size:18px;
+      font-weight:600;
+      color:var(--fg);
+      margin:0 0 12px;
+      line-height:1.3;
+    }
+    .faq-a{
+      font-size:15px;
+      color:var(--muted);
+      line-height:1.55;
+      margin:0;
+    }
+    @media(max-width:768px){
+      .faq-grid{grid-template-columns:1fr}
+    }
+
     /* ── Contacto / CTA ──────────────────────────────────── */
     .contact{
       padding-block:clamp(88px, 11vw, 160px);
@@ -1018,13 +1050,14 @@
               <div class="specs">
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18v-6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6M3 18h18M6 9V6h12v3"/></svg><span data-es="2 habitaciones" data-en="2 bedrooms">2 habitaciones</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3zM6 12V7a2 2 0 0 1 2-2h2v3"/></svg><span data-es="2 baños" data-en="2 baths">2 baños</span></span>
+                <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 18h20M4 18v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4M7 12V9a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/></svg><span data-es="1 King + 1 camarote + 1 matrimonial" data-en="1 King + 1 bunk bed + 1 full">1 King + 1 camarote + 1 matrimonial</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11h18M5 11V7h14v4M8 11v8M16 11v8"/></svg><span data-es="Balcón" data-en="Balcony">Balcón</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/></svg><span data-es="A/C en cuartos" data-en="A/C in bedrooms">A/C en cuartos</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10c4-3 12-3 16 0M7 13c3-2 7-2 10 0M10 16c1-1 3-1 4 0"/><circle cx="12" cy="19" r="1"/></svg><span data-es="WiFi" data-en="Wi-Fi">WiFi</span></span>
               </div>
             </div>
             <div class="module-foot">
-              <span class="price" data-es="Capacidad · 4-5" data-en="Sleeps · 4-5">Capacidad · 4-5</span>
+              <span class="price" data-es="Capacidad · 5" data-en="Sleeps · 5">Capacidad · 5</span>
               <a href="https://rentaspuravida.com" target="_blank" rel="noopener" data-es="Ver disponibilidad →" data-en="Check availability →">Ver disponibilidad <span aria-hidden="true">→</span></a>
             </div>
           </article>
@@ -1042,13 +1075,14 @@
               <div class="specs">
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18v-6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6M3 18h18M6 9V6h12v3"/></svg><span data-es="2 habitaciones" data-en="2 bedrooms">2 habitaciones</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3zM6 12V7a2 2 0 0 1 2-2h2v3"/></svg><span data-es="2 baños" data-en="2 baths">2 baños</span></span>
+                <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 18h20M4 18v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4M7 12V9a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/></svg><span data-es="1 King + 2 Queen" data-en="1 King + 2 Queen">1 King + 2 Queen</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11h18M5 11V7h14v4M8 11v8M16 11v8"/></svg><span data-es="Balcón" data-en="Balcony">Balcón</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/></svg><span data-es="A/C en cuartos" data-en="A/C in bedrooms">A/C en cuartos</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10c4-3 12-3 16 0M7 13c3-2 7-2 10 0M10 16c1-1 3-1 4 0"/><circle cx="12" cy="19" r="1"/></svg><span data-es="WiFi" data-en="Wi-Fi">WiFi</span></span>
               </div>
             </div>
             <div class="module-foot">
-              <span class="price" data-es="Capacidad · 4-5" data-en="Sleeps · 4-5">Capacidad · 4-5</span>
+              <span class="price" data-es="Capacidad · 6" data-en="Sleeps · 6">Capacidad · 6</span>
               <a href="https://rentaspuravida.com" target="_blank" rel="noopener" data-es="Ver disponibilidad →" data-en="Check availability →">Ver disponibilidad <span aria-hidden="true">→</span></a>
             </div>
           </article>
@@ -1059,20 +1093,22 @@
             <div class="module-body">
               <span class="module-tag coral" data-es="Planta baja · Jardín" data-en="Ground floor · Garden">Planta baja · Jardín</span>
               <h3>Iguana</h3>
-              <p data-es="Los niños salen corriendo al jardín apenas abren la puerta. Los abuelos entran sin escaleras. Tres habitaciones, rancho techado para almuerzos largos, y el único jardín privado de la propiedad — todo exclusivo de esta villa."
-                 data-en="Kids run straight to the garden the moment the door opens. Grandparents walk in without stairs. Three bedrooms, a covered rancho for long lunches, and the only private garden on the property — all exclusive to this villa.">
-                Los niños salen corriendo al jardín apenas abren la puerta. Los abuelos entran sin escaleras. Tres habitaciones, rancho techado para almuerzos largos, y el único jardín privado de la propiedad — todo exclusivo de esta villa.
+              <p data-es="Vista al mar desde la terraza, jardín privado donde los niños corren apenas abren la puerta. Tres habitaciones con baño propio cada una, rancho techado para almuerzos largos — todo exclusivo de esta villa."
+                 data-en="Ocean view from the terrace, a private garden where kids run free the moment the door opens. Three en-suite bedrooms, a covered rancho for long lunches — all exclusive to this villa.">
+                Vista al mar desde la terraza, jardín privado donde los niños corren apenas abren la puerta. Tres habitaciones con baño propio cada una, rancho techado para almuerzos largos — todo exclusivo de esta villa.
               </p>
               <div class="specs">
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18v-6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6M3 18h18M6 9V6h12v3"/></svg><span data-es="3 habitaciones" data-en="3 bedrooms">3 habitaciones</span></span>
-                <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3zM6 12V7a2 2 0 0 1 2-2h2v3"/></svg><span data-es="Baños — por confirmar" data-en="Baths — TBC">Baños — por confirmar</span></span>
+                <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3zM6 12V7a2 2 0 0 1 2-2h2v3"/></svg><span data-es="3 baños (uno por cuarto)" data-en="3 baths (en-suite)">3 baños (uno por cuarto)</span></span>
+                <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 18h20M4 18v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4M7 12V9a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/></svg><span data-es="1 King + 2 Queen + sofá cama" data-en="1 King + 2 Queen + sofa bed">1 King + 2 Queen + sofá cama</span></span>
+                <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11h18M5 11V7h14v4M8 11v8M16 11v8"/></svg><span data-es="Terraza con vista al mar" data-en="Terrace with ocean view">Terraza con vista al mar</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 14L12 6l9 8M5 14v6h14v-6M9 20v-3h6v3"/></svg><span data-es="Rancho techado propio" data-en="Private open-air rancho">Rancho techado propio</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/></svg><span data-es="A/C en cuartos" data-en="A/C in bedrooms">A/C en cuartos</span></span>
                 <span class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10c4-3 12-3 16 0M7 13c3-2 7-2 10 0M10 16c1-1 3-1 4 0"/><circle cx="12" cy="19" r="1"/></svg><span data-es="WiFi" data-en="Wi-Fi">WiFi</span></span>
               </div>
             </div>
             <div class="module-foot">
-              <span class="price" data-es="Capacidad · 6" data-en="Sleeps · 6">Capacidad · 6</span>
+              <span class="price" data-es="Capacidad · 6-8" data-en="Sleeps · 6-8">Capacidad · 6-8</span>
               <a href="https://rentaspuravida.com" target="_blank" rel="noopener" data-es="Ver disponibilidad →" data-en="Check availability →">Ver disponibilidad <span aria-hidden="true">→</span></a>
             </div>
           </article>
@@ -1303,6 +1339,61 @@
               </div>
             </div>
           </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────── FAQ ─────── -->
+    <section id="faq" class="faq">
+      <div class="wrap">
+        <div class="section-head scroll-reveal">
+          <div>
+            <span class="kicker" data-es="Antes de reservar" data-en="Before you book">Antes de reservar</span>
+            <h2 class="display"
+                data-es="Preguntas frecuentes."
+                data-en="Frequently asked questions.">
+              Preguntas frecuentes.
+            </h2>
+          </div>
+        </div>
+
+        <div class="faq-grid">
+
+          <div class="faq-item scroll-reveal">
+            <h3 class="faq-q" data-es="¿Cómo es el acceso a cada villa?" data-en="How is the access to each villa?">¿Cómo es el acceso a cada villa?</h3>
+            <p class="faq-a" data-es="Garza y Pelícano tienen entrada a nivel de calle con escalera interna al segundo piso (dormitorios arriba). Iguana queda más abajo que el parqueo — se accede por escaleras externas, pero una vez dentro todo es en una sola planta." data-en="Garza and Pelícano have street-level entry with an internal staircase to the second floor (bedrooms upstairs). Iguana sits below the parking lot — accessed via external stairs, but once inside, everything is on a single level.">Garza y Pelícano tienen entrada a nivel de calle con escalera interna al segundo piso (dormitorios arriba). Iguana queda más abajo que el parqueo — se accede por escaleras externas, pero una vez dentro todo es en una sola planta.</p>
+          </div>
+
+          <div class="faq-item scroll-reveal">
+            <h3 class="faq-q" data-es="¿Hay parqueo?" data-en="Is there parking?">¿Hay parqueo?</h3>
+            <p class="faq-a" data-es="Sí, hay 6 espacios de parqueo techados compartidos entre las tres villas — suficiente para 2 vehículos por villa." data-en="Yes, there are 6 covered parking spaces shared among the three villas — enough for 2 vehicles per villa.">Sí, hay 6 espacios de parqueo techados compartidos entre las tres villas — suficiente para 2 vehículos por villa.</p>
+          </div>
+
+          <div class="faq-item scroll-reveal">
+            <h3 class="faq-q" data-es="¿A qué hora es el check-in y check-out?" data-en="What are the check-in and check-out times?">¿A qué hora es el check-in y check-out?</h3>
+            <p class="faq-a" data-es="Check-in a partir de las 3:00 p.m. y check-out antes de las 11:00 a.m. Si necesitás flexibilidad, consultá con Rentas Pura Vida — a veces se puede ajustar según disponibilidad." data-en="Check-in from 3:00 p.m. and check-out by 11:00 a.m. If you need flexibility, ask Rentas Pura Vida — adjustments may be possible depending on availability.">Check-in a partir de las 3:00 p.m. y check-out antes de las 11:00 a.m. Si necesitás flexibilidad, consultá con Rentas Pura Vida — a veces se puede ajustar según disponibilidad.</p>
+          </div>
+
+          <div class="faq-item scroll-reveal">
+            <h3 class="faq-q" data-es="¿Se permiten mascotas?" data-en="Are pets allowed?">¿Se permiten mascotas?</h3>
+            <p class="faq-a" data-es="No, por el momento no se permiten mascotas en ninguna de las villas." data-en="No, pets are not allowed in any of the villas at this time.">No, por el momento no se permiten mascotas en ninguna de las villas.</p>
+          </div>
+
+          <div class="faq-item scroll-reveal">
+            <h3 class="faq-q" data-es="¿Hay acceso directo a la playa?" data-en="Is there direct beach access?">¿Hay acceso directo a la playa?</h3>
+            <p class="faq-a" data-es="Existe un trillo desde la propiedad, pero es de dificultad intermedia-alta y no lo recomendamos para niños o personas con movilidad reducida. La mayoría de huéspedes prefieren caminar por la calle principal (10 minutos) o ir en carro (3 minutos)." data-en="There's a trail from the property, but it's intermediate-high difficulty and not recommended for children or those with limited mobility. Most guests prefer walking via the main road (10 minutes) or driving (3 minutes).">Existe un trillo desde la propiedad, pero es de dificultad intermedia-alta y no lo recomendamos para niños o personas con movilidad reducida. La mayoría de huéspedes prefieren caminar por la calle principal (10 minutos) o ir en carro (3 minutos).</p>
+          </div>
+
+          <div class="faq-item scroll-reveal">
+            <h3 class="faq-q" data-es="¿Hay WiFi?" data-en="Is there WiFi?">¿Hay WiFi?</h3>
+            <p class="faq-a" data-es="Sí, todas las villas tienen WiFi incluido. La señal es estable para trabajo remoto y streaming." data-en="Yes, all villas include WiFi. The connection is stable enough for remote work and streaming.">Sí, todas las villas tienen WiFi incluido. La señal es estable para trabajo remoto y streaming.</p>
+          </div>
+
+          <div class="faq-item scroll-reveal">
+            <h3 class="faq-q" data-es="¿Puedo reservar solo una villa si viajo en grupo pequeño?" data-en="Can I book just one villa if I'm traveling with a small group?">¿Puedo reservar solo una villa si viajo en grupo pequeño?</h3>
+            <p class="faq-a" data-es="Absolutamente. Cada villa es completamente independiente — entrada propia, cocina propia, y ningún espacio interior compartido con otras villas. Tu privacidad está garantizada." data-en="Absolutely. Each villa is completely independent — private entrance, private kitchen, and no shared indoor spaces with other villas. Your privacy is guaranteed.">Absolutamente. Cada villa es completamente independiente — entrada propia, cocina propia, y ningún espacio interior compartido con otras villas. Tu privacidad está garantizada.</p>
+          </div>
 
         </div>
       </div>
