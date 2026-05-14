@@ -10,22 +10,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:      oklch(98% 0.008 85);
+      /* Rocamar real — turquesa Pacífico, verde palma, cielo tropical */
+      --bg:      oklch(99% 0.005 200);      /* blanco con toque de cielo */
       --surface: oklch(100% 0 0);
-      --surface-2: oklch(96% 0.012 85);
-      --fg:      oklch(18% 0.05 220);
-      --fg-soft: oklch(32% 0.04 220);
-      --muted:   oklch(48% 0.022 220);
-      --border:  oklch(89% 0.015 200);
-      --border-strong: oklch(76% 0.025 200);
-      --accent:  oklch(58% 0.18 200);
-      --accent-deep: oklch(42% 0.16 210);
-      --coral:   oklch(68% 0.20 35);
-      --coral-deep: oklch(58% 0.18 30);
-      --ocean-50: oklch(96% 0.025 200);
-      --ocean-deep: oklch(52% 0.14 210);
-      --sand-50: oklch(95% 0.022 85);
-      --sunset: oklch(72% 0.18 50);
+      --surface-2: oklch(96% 0.02 195);     /* tinte turquesa claro */
+      --fg:      oklch(18% 0.02 200);       /* casi negro con tono azul */
+      --fg-soft: oklch(30% 0.02 200);
+      --muted:   oklch(48% 0.02 195);
+      --border:  oklch(90% 0.02 195);
+      --border-strong: oklch(75% 0.04 190);
+      --accent:  oklch(52% 0.15 195);       /* turquesa Pacífico — de la foto */
+      --accent-deep: oklch(42% 0.13 195);   /* turquesa profundo */
+      --palm:    oklch(38% 0.12 155);       /* verde palma de la foto */
+      --palm-light: oklch(48% 0.14 155);    /* verde palma más claro */
+      --coral:   oklch(62% 0.18 28);        /* coral atardecer */
+      --coral-deep: oklch(52% 0.16 25);
+      --ocean-50: oklch(94% 0.04 195);      /* turquesa muy claro */
+      --ocean-deep: oklch(45% 0.14 200);    /* océano profundo */
+      --sand-50: oklch(97% 0.012 85);       /* arena cálida */
+      --sunset: oklch(70% 0.20 40);         /* atardecer */
 
       --font-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
@@ -212,8 +215,10 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(ellipse at 85% 15%, color-mix(in oklch, var(--sunset) 12%, transparent), transparent 45%),
-        radial-gradient(ellipse at 10% 85%, color-mix(in oklch, var(--ocean-deep) 08%, transparent), transparent 50%);
+        radial-gradient(ellipse at 90% 10%, color-mix(in oklch, var(--sunset) 12%, transparent), transparent 50%),
+        radial-gradient(ellipse at 0% 80%, color-mix(in oklch, var(--palm) 10%, transparent), transparent 45%),
+        radial-gradient(ellipse at 5% 20%, color-mix(in oklch, var(--ocean-deep) 12%, transparent), transparent 55%),
+        radial-gradient(ellipse at 60% 50%, color-mix(in oklch, var(--accent) 5%, transparent), transparent 70%);
       pointer-events:none;
       z-index:0;
     }
@@ -292,9 +297,10 @@
       position:relative;
       width:100%;
       background:
-        radial-gradient(ellipse at 30% 20%, color-mix(in oklch, var(--ocean-50) 70%, white), transparent 60%),
-        radial-gradient(ellipse at 80% 90%, color-mix(in oklch, var(--sand-50) 80%, white), transparent 55%),
-        linear-gradient(160deg, var(--ocean-50), var(--sand-50));
+        radial-gradient(ellipse at 25% 15%, color-mix(in oklch, var(--ocean-50) 85%, white), transparent 55%),
+        radial-gradient(ellipse at 85% 70%, color-mix(in oklch, var(--palm-light) 25%, transparent), transparent 45%),
+        radial-gradient(ellipse at 75% 85%, color-mix(in oklch, var(--accent) 15%, var(--sand-50)), transparent 50%),
+        linear-gradient(155deg, var(--ocean-50) 0%, var(--sand-50) 100%);
       overflow:hidden;
     }
     .ph::before{
@@ -573,9 +579,10 @@
       position:relative;
       box-shadow:var(--shadow-soft);
       background:
-        radial-gradient(ellipse at 30% 35%, color-mix(in oklch, var(--ocean-deep) 40%, white), transparent 50%),
-        radial-gradient(ellipse at 80% 70%, color-mix(in oklch, var(--sunset) 30%, white), transparent 45%),
-        linear-gradient(165deg, var(--ocean-50) 0%, oklch(94% 0.028 200) 100%);
+        radial-gradient(ellipse at 25% 30%, color-mix(in oklch, var(--ocean-deep) 45%, white), transparent 55%),
+        radial-gradient(ellipse at 80% 20%, color-mix(in oklch, var(--palm) 20%, transparent), transparent 40%),
+        radial-gradient(ellipse at 75% 75%, color-mix(in oklch, var(--accent) 30%, white), transparent 50%),
+        linear-gradient(160deg, var(--ocean-50) 0%, var(--sand-50) 100%);
     }
     .map svg{position:absolute; inset:0; width:100%; height:100%}
     .map-pin{
@@ -770,9 +777,10 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(ellipse at 95% 5%, color-mix(in oklch, var(--sunset) 45%, transparent), transparent 48%),
-        radial-gradient(ellipse at 5% 95%, color-mix(in oklch, var(--ocean-deep) 35%, transparent), transparent 52%),
-        radial-gradient(ellipse at 60% 40%, color-mix(in oklch, var(--coral) 18%, transparent), transparent 60%);
+        radial-gradient(ellipse at 95% 5%, color-mix(in oklch, var(--sunset) 50%, transparent), transparent 50%),
+        radial-gradient(ellipse at 5% 95%, color-mix(in oklch, var(--palm) 35%, transparent), transparent 50%),
+        radial-gradient(ellipse at 5% 20%, color-mix(in oklch, var(--ocean-deep) 40%, transparent), transparent 55%),
+        radial-gradient(ellipse at 60% 50%, color-mix(in oklch, var(--accent) 20%, transparent), transparent 65%);
       pointer-events:none;
       mix-blend-mode:overlay;
     }

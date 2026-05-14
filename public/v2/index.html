@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocamar · Playa Blanca, Costa Rica</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f8fafb;
+      --fg: #1a3038;
+      --muted: #5c7078;
+      --border: #e2e8ea;
+      --accent: #2b9e8f;
+      --accent-warm: #e87a5f;
+      --accent-warm-hover: #d66a4f;
+
+      --font-display: 'Avenir Next', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 50%;
+
+      --max-width: 1280px;
+      --nav-height: 72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    [data-lang="en"] [data-es],
+    [data-lang="es"] [data-en] { display: none; }
+
+    /* Typography */
+    .display {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+    }
+    .display em { font-style: normal; color: var(--accent); }
+
+    .lead {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .kicker {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-accent {
+      background: var(--accent-warm);
+      color: white;
+    }
+    .btn-accent:hover { background: var(--accent-warm-hover); transform: scale(0.98); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { background: var(--surface); }
+
+    .btn-large { padding: 1rem 2rem; font-size: 1.0625rem; }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: none;
+      gap: var(--space-md);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .lang-toggle span { opacity: 0.5; }
+    .lang-toggle span.active { opacity: 1; color: var(--accent); }
+
+    .nav-cta { display: none; }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .nav-cta { display: inline-flex; }
+    }
+
+    /* Mobile menu */
+    .mobile-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .mobile-menu-btn svg { stroke: var(--fg); }
+    @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      padding: var(--space-xl) 0;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--surface) 0%, #e8f0f2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.3) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+    }
+    .hero .eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+    .hero .display { margin-bottom: var(--space-md); }
+    .hero .lead { margin-bottom: var(--space-lg); }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+    @media (min-width: 640px) {
+      .hero-stats { grid-template-columns: repeat(4, 1fr); }
+    }
+    .hero-stat {
+      padding: var(--space-sm) 0;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat .k {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+    .hero-stat .v {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    /* Intro */
+    .intro {
+      padding: var(--space-2xl) 0;
+      text-align: center;
+    }
+    .intro-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--fg);
+      max-width: 800px;
+      margin: 0 auto var(--space-md);
+    }
+    .intro-quote em { font-style: normal; color: var(--accent); }
+    .intro-byline {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    .section {
+      padding: var(--space-2xl) 0;
+    }
+    .section-header {
+      max-width: 640px;
+      margin-bottom: var(--space-xl);
+    }
+    .section-header .display { margin-bottom: var(--space-md); }
+
+    /* Modules grid */
+    .modules-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .modules-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .module-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+    .module-card:hover {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+    .module-card-image {
+      aspect-ratio: 4 / 3;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8125rem;
+    }
+    .module-card-body { padding: var(--space-md); }
+    .module-tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: rgba(43, 158, 143, 0.1);
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .module-tag.coral {
+      color: var(--accent-warm);
+      background: rgba(232, 122, 95, 0.1);
+    }
+    .module-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+    .module-card p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin-bottom: var(--space-md);
+      line-height: 1.5;
+    }
+    .module-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .module-amenity {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      background: var(--surface);
+      padding: 0.375rem 0.75rem;
+      border-radius: var(--radius-sm);
+    }
+    .module-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border);
+    }
+    .module-capacity {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .module-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .module-link:hover { text-decoration: underline; }
+
+    /* Booking options note */
+    .booking-options {
+      margin-top: var(--space-xl);
+      padding: var(--space-lg);
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+    }
+    .booking-options h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+    .booking-option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .booking-option:last-child { border-bottom: none; }
+    .booking-option-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+    }
+    .booking-option span {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .shared-note {
+      margin-top: var(--space-md);
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .shared-note strong { color: var(--fg); font-weight: 500; }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      gap: var(--space-sm);
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 640px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .gallery-item.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    /* Location */
+    .location-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .location-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+    }
+    .location-map {
+      aspect-ratio: 4 / 3;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    .location-content .display { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: var(--space-md); }
+
+    /* Nearby */
+    .nearby-section { background: var(--surface); }
+    .nearby-grid {
+      display: grid;
+      gap: var(--space-md);
+    }
+    @media (min-width: 640px) {
+      .nearby-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .nearby-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .nearby-item {
+      display: flex;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: var(--bg);
+      border-radius: var(--radius-md);
+    }
+    .nearby-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(43, 158, 143, 0.1);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nearby-icon svg { stroke: var(--accent); }
+    .nearby-content { flex: 1; }
+    .nearby-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 0.25rem;
+    }
+    .nearby-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+    .nearby-dist {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .testimonial {
+      padding: var(--space-lg);
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+    }
+    .testimonial-quote {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--fg);
+      margin-bottom: var(--space-md);
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--border);
+      border-radius: var(--radius-full);
+    }
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+    .testimonial-date {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 800px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--fg);
+      text-align: left;
+      cursor: pointer;
+    }
+    .faq-question svg {
+      flex-shrink: 0;
+      stroke: var(--muted);
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-question svg { transform: rotate(180deg); }
+    .faq-answer {
+      display: none;
+      padding-bottom: var(--space-md);
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* Contact */
+    .contact-section { background: var(--surface); }
+    .contact-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .contact-info p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin-bottom: var(--space-md);
+    }
+    .contact-cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    @media (min-width: 480px) {
+      .contact-cta { flex-direction: row; }
+    }
+
+    /* Footer */
+    .footer {
+      padding: var(--space-xl) 0 var(--space-lg);
+      border-top: 1px solid var(--border);
+    }
+    .footer-grid {
+      display: grid;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    @media (min-width: 640px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    }
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-top: var(--space-sm);
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: var(--space-sm);
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a {
+      font-size: 0.9375rem;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body data-lang="es">
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">Rocamar</a>
+
+      <ul class="nav-links">
+        <li><a href="#modules"><span data-es>Los módulos</span><span data-en>The units</span></a></li>
+        <li><a href="#gallery"><span data-es>Galería</span><span data-en>Gallery</span></a></li>
+        <li><a href="#location"><span data-es>Ubicación</span><span data-en>Location</span></a></li>
+        <li><a href="#testimonials"><span data-es>Huéspedes</span><span data-en>Guests</span></a></li>
+        <li><a href="#contact"><span data-es>Contacto</span><span data-en>Contact</span></a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle">
+          <span class="active" data-lang-btn="es">ES</span>
+          <span>/</span>
+          <span data-lang-btn="en">EN</span>
+        </button>
+        <a href="https://rentaspuravida.com" target="_blank" rel="noopener" class="btn btn-accent nav-cta">
+          <span data-es>Ver fechas</span><span data-en>Check dates</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-placeholder">
+        <span data-es>Foto de portada — vista al mar desde el balcón</span>
+        <span data-en>Cover photo — ocean view from balcony</span>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Playa Blanca · Costa Rica</span>
+      <h1 class="display">
+        <span data-es>Vacaciones en familia <em>sin compartir casa</em> — a menos que quieran.</span>
+        <span data-en>Family vacation <em>without sharing a house</em> — unless you want to.</span>
+      </h1>
+      <p class="lead">
+        <span data-es>Tres villas con entrada propia, cada una con vista al Pacífico. A 10 minutos caminando de la playa. Reservá una sola para total privacidad, o las tres juntas cuando el grupo quiere estar cerca pero no encima.</span>
+        <span data-en>Three villas with private entrances, each with Pacific views. A 10-minute walk to the beach. Book one for total privacy, or all three when the group wants to be close but not on top of each other.</span>
+      </p>
+      <div class="hero-ctas">
+        <a href="https://rentaspuravida.com" target="_blank" rel="noopener" class="btn btn-accent btn-large">
+          <span data-es>Ver fechas disponibles</span><span data-en>Check available dates</span>
+        </a>
+        <a href="#modules" class="btn btn-ghost btn-large">
+          <span data-es>Elegir tu villa</span><span data-en>Choose your villa</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="k"><span data-es>Módulos</span><span data-en>Units</span></div>
+          <div class="v">3</div>
+        </div>
+        <div class="hero-stat">
+          <div class="k"><span data-es>Capacidad total</span><span data-en>Total capacity</span></div>
+          <div class="v"><span data-es>Hasta 14</span><span data-en>Up to 14</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="k"><span data-es>Vista al mar</span><span data-en>Sea view</span></div>
+          <div class="v"><span data-es>A 50 m</span><span data-en>50 m away</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="k"><span data-es>A la playa</span><span data-en>To the beach</span></div>
+          <div class="v"><span data-es>10 min caminando</span><span data-en>10 min walk</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="intro">
+    <div class="container">
+      <p class="intro-quote">
+        <span data-es>Desayunás con tu gente. Almorzás en tu propia terraza. <em>Y nadie te obliga a hacer las dos cosas.</em></span>
+        <span data-en>Have breakfast with your people. Lunch on your own terrace. <em>And no one makes you choose one or the other.</em></span>
+      </p>
+      <div class="intro-byline">Rocamar · Playa Blanca, Costa Rica</div>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section id="modules" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="kicker"><span data-es>Los módulos</span><span data-en>The units</span></span>
+        <h2 class="display">
+          <span data-es>Tu espacio. Tus horarios. Tu llave.</span>
+          <span data-en>Your space. Your schedule. Your key.</span>
+        </h2>
+        <p class="lead">
+          <span data-es>Cada villa tiene su propia entrada, cocina equipada con agua caliente, y cero espacios compartidos adentro. Dormís hasta tarde sin que nadie te despierte. Cocinás cuando querés. Y si el grupo se quiere juntar, los encuentros pasan afuera — en el rancho o frente al mar.</span>
+          <span data-en>Each villa has its own entrance, a kitchen with hot water, and zero shared spaces inside. Sleep in without anyone waking you. Cook when you want. And when the group wants to gather, it happens outside — at the rancho or facing the sea.</span>
+        </p>
+      </div>
+
+      <div class="modules-grid">
+        <!-- Garza -->
+        <article class="module-card">
+          <div class="module-card-image">
+            <span data-es>Foto de Garza</span><span data-en>Garza photo</span>
+          </div>
+          <div class="module-card-body">
+            <span class="module-tag"><span data-es>Planta alta · Vista al mar</span><span data-en>Upper floor · Sea view</span></span>
+            <h3>Garza</h3>
+            <p>
+              <span data-es>Amanecés con el sol entrando por el balcón y el Pacífico de frente. Dos habitaciones, dos baños, espacio de sobra para una familia pequeña o dos parejas que quieren su propio ritmo.</span>
+              <span data-en>Wake up with sunlight through the balcony and the Pacific straight ahead. Two bedrooms, two baths, plenty of room for a small family or two couples who want their own rhythm.</span>
+            </p>
+            <div class="module-amenities">
+              <span class="module-amenity"><span data-es>2 habitaciones</span><span data-en>2 bedrooms</span></span>
+              <span class="module-amenity"><span data-es>2 baños</span><span data-en>2 baths</span></span>
+              <span class="module-amenity"><span data-es>Balcón</span><span data-en>Balcony</span></span>
+              <span class="module-amenity">A/C</span>
+              <span class="module-amenity">WiFi</span>
+            </div>
+            <div class="module-footer">
+              <span class="module-capacity"><span data-es>Capacidad · 5</span><span data-en>Sleeps · 5</span></span>
+              <a href="garza.html" class="module-link"><span data-es>Ver detalles →</span><span data-en>View details →</span></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Golondrina -->
+        <article class="module-card">
+          <div class="module-card-image">
+            <span data-es>Foto de Golondrina</span><span data-en>Golondrina photo</span>
+          </div>
+          <div class="module-card-body">
+            <span class="module-tag"><span data-es>Planta alta · Vista al mar</span><span data-en>Upper floor · Sea view</span></span>
+            <h3>Golondrina</h3>
+            <p>
+              <span data-es>Misma vista que Garza, mismo plan — perfecta si viajan dos familias y cada una quiere su balcón. Desde acá ves los pelícanos bajar en picada a pescar mientras tomás el café de la mañana.</span>
+              <span data-en>Same view as Garza, same layout — perfect when two families travel together and each wants their own balcony. Watch pelicans dive for fish while you have your morning coffee.</span>
+            </p>
+            <div class="module-amenities">
+              <span class="module-amenity"><span data-es>2 habitaciones</span><span data-en>2 bedrooms</span></span>
+              <span class="module-amenity"><span data-es>2 baños</span><span data-en>2 baths</span></span>
+              <span class="module-amenity"><span data-es>Balcón</span><span data-en>Balcony</span></span>
+              <span class="module-amenity">A/C</span>
+              <span class="module-amenity">WiFi</span>
+            </div>
+            <div class="module-footer">
+              <span class="module-capacity"><span data-es>Capacidad · 6</span><span data-en>Sleeps · 6</span></span>
+              <a href="golondrina.html" class="module-link"><span data-es>Ver detalles →</span><span data-en>View details →</span></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Iguana -->
+        <article class="module-card">
+          <div class="module-card-image">
+            <span data-es>Foto de Iguana</span><span data-en>Iguana photo</span>
+          </div>
+          <div class="module-card-body">
+            <span class="module-tag coral"><span data-es>Planta baja · Jardín</span><span data-en>Ground floor · Garden</span></span>
+            <h3>Iguana</h3>
+            <p>
+              <span data-es>Vista al mar desde la terraza, jardín privado donde los niños corren apenas abren la puerta. Tres habitaciones con baño propio cada una, rancho techado para almuerzos largos — todo exclusivo de esta villa.</span>
+              <span data-en>Ocean view from the terrace, a private garden where kids run free the moment the door opens. Three en-suite bedrooms, a covered rancho for long lunches — all exclusive to this villa.</span>
+            </p>
+            <div class="module-amenities">
+              <span class="module-amenity"><span data-es>3 habitaciones</span><span data-en>3 bedrooms</span></span>
+              <span class="module-amenity"><span data-es>3 baños</span><span data-en>3 baths</span></span>
+              <span class="module-amenity"><span data-es>Terraza</span><span data-en>Terrace</span></span>
+              <span class="module-amenity"><span data-es>Rancho privado</span><span data-en>Private rancho</span></span>
+              <span class="module-amenity">A/C</span>
+              <span class="module-amenity">WiFi</span>
+            </div>
+            <div class="module-footer">
+              <span class="module-capacity"><span data-es>Capacidad · 6-8</span><span data-en>Sleeps · 6-8</span></span>
+              <a href="iguana.html" class="module-link"><span data-es>Ver detalles →</span><span data-en>View details →</span></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Booking options -->
+      <div class="booking-options">
+        <h4><span data-es>Reservá según tu grupo</span><span data-en>Book based on your group</span></h4>
+        <div class="booking-option">
+          <div class="booking-option-icon">1</div>
+          <span><span data-es>Una villa · escape de pareja o familia chica</span><span data-en>One villa · couple's getaway or small family</span></span>
+        </div>
+        <div class="booking-option">
+          <div class="booking-option-icon">2</div>
+          <span><span data-es>Dos villas · dos familias, mismo viaje</span><span data-en>Two villas · two families, same trip</span></span>
+        </div>
+        <div class="booking-option">
+          <div class="booking-option-icon">3</div>
+          <span><span data-es>Las tres · hasta 14, todos juntos pero no revueltos</span><span data-en>All three · up to 14, together but not on top of each other</span></span>
+        </div>
+        <p class="shared-note">
+          <span data-es>Único espacio común: <strong>6 espacios de parqueo</strong> (el jardín es exclusivo de Iguana)</span>
+          <span data-en>Only shared space: <strong>6 parking spots</strong> (the garden is exclusive to Iguana)</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="kicker"><span data-es>Galería</span><span data-en>Gallery</span></span>
+        <h2 class="display">
+          <span data-es>Así se ve un día acá.</span>
+          <span data-en>This is what a day here looks like.</span>
+        </h2>
+        <p class="lead">
+          <span data-es>Reemplaza estos espacios con tus fotos cuando estén listas — el grid se acomoda a cualquier proporción.</span>
+          <span data-en>Replace these slots with your photos when they're ready — the grid adapts to any aspect.</span>
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item featured">
+          <span data-es>Foto principal</span><span data-en>Main photo</span>
+        </div>
+        <div class="gallery-item"><span data-es>Foto 2</span><span data-en>Photo 2</span></div>
+        <div class="gallery-item"><span data-es>Foto 3</span><span data-en>Photo 3</span></div>
+        <div class="gallery-item"><span data-es>Foto 4</span><span data-en>Photo 4</span></div>
+        <div class="gallery-item"><span data-es>Foto 5</span><span data-en>Photo 5</span></div>
+        <div class="gallery-item"><span data-es>Foto 6</span><span data-en>Photo 6</span></div>
+        <div class="gallery-item"><span data-es>Foto 7</span><span data-en>Photo 7</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section id="location" class="section">
+    <div class="container">
+      <div class="location-grid">
+        <div class="location-map">
+          <span data-es>Mapa ilustrativo · Playa Blanca, Pacífico</span>
+          <span data-en>Illustrative map · Playa Blanca, Pacific</span>
+        </div>
+        <div class="location-content">
+          <span class="kicker"><span data-es>Ubicación</span><span data-en>Location</span></span>
+          <h2 class="display">
+            <span data-es>Arena blanca. Bandera Azul. Sin motos acuáticas.</span>
+            <span data-en>White sand. Blue Flag. No jet skis.</span>
+          </h2>
+          <p class="lead">
+            <span data-es>Una de las playas más bonitas del Pacífico Central — arena blanca verdadera (no gris volcánico), certificación Bandera Azul por calidad del agua, y cero ruido de motos acuáticas o lanchas. Desde tu balcón ves el mar entre los árboles. Desde el portón, caminás 10 minutos a la arena.</span>
+            <span data-en>One of the Central Pacific's most beautiful beaches — real white sand (not volcanic gray), Blue Flag certified for water quality, and zero jet ski or boat noise. From your balcony you see the sea through the trees. From the gate, it's a 10-minute walk to the sand.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby -->
+  <section class="section nearby-section">
+    <div class="container">
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; margin-bottom: var(--space-lg);">
+        <span data-es>Qué hacer cerca</span><span data-en>What's nearby</span>
+      </h3>
+      <div class="nearby-grid">
+        <div class="nearby-item">
+          <div class="nearby-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+              <path d="M2 12h20"/>
+            </svg>
+          </div>
+          <div class="nearby-content">
+            <div class="nearby-name"><span data-es>Vista al mar desde los balcones</span><span data-en>Sea view from the balconies</span></div>
+            <div class="nearby-desc"><span data-es>El Pacífico a 50 metros, enmarcado por los árboles del frente</span><span data-en>The Pacific 50 meters away, framed by the trees out front</span></div>
+          </div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v18"/>
+              <path d="M5 8l7-5 7 5"/>
+              <path d="M19 8v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8"/>
+            </svg>
+          </div>
+          <div class="nearby-content">
+            <div class="nearby-name"><span data-es>Lapas rojas sobre la casa</span><span data-en>Scarlet macaws overhead</span></div>
+            <div class="nearby-desc"><span data-es>Pasan en parejas y bandadas al amanecer y al atardecer — escuchas su llamado antes de verlas</span><span data-en>They fly past in pairs and flocks at dawn and dusk — you'll hear them before you see them</span></div>
+            <span class="nearby-dist"><span data-es>diario</span><span data-en>daily</span></span>
+          </div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div class="nearby-content">
+            <div class="nearby-name"><span data-es>Playa Blanca · 10 min a pie</span><span data-en>Playa Blanca · 10 min walk</span></div>
+            <div class="nearby-desc"><span data-es>Arena blanca, Bandera Azul, sin motos acuáticas ni lanchas</span><span data-en>White sand, Blue Flag certified, no jet skis or boats</span></div>
+            <span class="nearby-dist">10 min</span>
+          </div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <div class="nearby-content">
+            <div class="nearby-name"><span data-es>Súper / restaurantes</span><span data-en>Supermarket / restaurants</span></div>
+            <div class="nearby-desc"><span data-es>Comida típica, marisquerías y un super para el mercado de la semana</span><span data-en>Local food, seafood spots and a super for the weekly market</span></div>
+            <span class="nearby-dist">5 min</span>
+          </div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="nearby-content">
+            <div class="nearby-name"><span data-es>Tours: manglar y catamaranes</span><span data-en>Tours: mangrove & catamarans</span></div>
+            <div class="nearby-desc"><span data-es>Avistamiento de fauna, snorkel y atardeceres en barco</span><span data-en>Wildlife watching, snorkeling and sunset sails</span></div>
+            <span class="nearby-dist">15 min</span>
+          </div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="nearby-content">
+            <div class="nearby-name"><span data-es>Parque Nacional Carara</span><span data-en>Carara National Park</span></div>
+            <div class="nearby-desc"><span data-es>Senderos cortos, lapas rojas y bosque tropical</span><span data-en>Short trails, scarlet macaws and tropical forest</span></div>
+            <span class="nearby-dist">40 min</span>
+          </div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="nearby-content">
+            <div class="nearby-name"><span data-es>Aeropuerto SJO</span><span data-en>SJO Airport</span></div>
+            <div class="nearby-desc"><span data-es>Trayecto cómodo desde San José, ruta costera</span><span data-en>Easy drive from San José, coastal route</span></div>
+            <span class="nearby-dist">~ 1 h 45 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="kicker"><span data-es>Huéspedes</span><span data-en>Guests</span></span>
+        <h2 class="display">
+          <span data-es>Por qué vuelven las familias.</span>
+          <span data-en>Why families come back.</span>
+        </h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-quote">
+            <span data-es>"El lugar perfecto para nuestra familia extendida. Cada uno tuvo su espacio y nos juntamos en el rancho para las comidas. Los niños no paraban de correr por el jardín."</span>
+            <span data-en>"The perfect spot for our extended family. Everyone had their own space and we gathered at the rancho for meals. The kids couldn't stop running around the garden."</span>
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"></div>
+            <div>
+              <div class="testimonial-name">—</div>
+              <div class="testimonial-date"><span data-es>Próximamente</span><span data-en>Coming soon</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-quote">
+            <span data-es>"Playa Blanca es increíble — arena blanca de verdad, agua cristalina, y cero ruido de motos acuáticas. Volvemos el próximo año."</span>
+            <span data-en>"Playa Blanca is incredible — real white sand, crystal clear water, and zero jet ski noise. Coming back next year."</span>
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"></div>
+            <div>
+              <div class="testimonial-name">—</div>
+              <div class="testimonial-date"><span data-es>Próximamente</span><span data-en>Coming soon</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="kicker">FAQ</span>
+        <h2 class="display">
+          <span data-es>Preguntas frecuentes</span>
+          <span data-en>Frequently asked questions</span>
+        </h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-es>¿Puedo reservar solo una villa?</span>
+            <span data-en>Can I book just one villa?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <span data-es>Sí. Cada villa funciona de manera independiente con su propia entrada, cocina y baños. Reservá la que mejor se ajuste a tu grupo.</span>
+            <span data-en>Yes. Each villa operates independently with its own entrance, kitchen, and bathrooms. Book the one that best fits your group.</span>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-es>¿Hay espacios compartidos?</span>
+            <span data-en>Are there shared spaces?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <span data-es>El único espacio común es el parqueo (6 espacios). El jardín y rancho son exclusivos de Iguana. Garza y Golondrina tienen balcones privados.</span>
+            <span data-en>The only shared space is parking (6 spots). The garden and rancho are exclusive to Iguana. Garza and Golondrina have private balconies.</span>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-es>¿Qué tan lejos está la playa?</span>
+            <span data-en>How far is the beach?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <span data-es>Playa Blanca está a 10 minutos caminando desde el portón. El mar es visible desde los balcones de Garza, Golondrina y la terraza de Iguana.</span>
+            <span data-en>Playa Blanca is a 10-minute walk from the gate. The sea is visible from the balconies of Garza, Golondrina, and Iguana's terrace.</span>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-es>¿Tienen aire acondicionado?</span>
+            <span data-en>Is there air conditioning?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <span data-es>Sí, todas las habitaciones tienen aire acondicionado. Las áreas comunes se refrescan con la brisa del mar.</span>
+            <span data-en>Yes, all bedrooms have air conditioning. Common areas are cooled by the sea breeze.</span>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-es>¿Cómo reservo?</span>
+            <span data-en>How do I book?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <span data-es>Las reservas se hacen a través de rentaspuravida.com. Podés ver disponibilidad y tarifas actualizadas ahí.</span>
+            <span data-en>Bookings are made through rentaspuravida.com. You can check availability and current rates there.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="kicker"><span data-es>Contacto</span><span data-en>Contact</span></span>
+          <h2 class="display" style="font-size: clamp(1.5rem, 3vw, 2rem);">
+            <span data-es>¿Preguntas? Escribinos.</span>
+            <span data-en>Questions? Get in touch.</span>
+          </h2>
+          <p>
+            <span data-es>Si tenés dudas sobre disponibilidad, las villas o cómo llegar, escribinos directamente. Respondemos en menos de 24 horas.</span>
+            <span data-en>If you have questions about availability, the villas, or how to get here, write to us directly. We respond within 24 hours.</span>
+          </p>
+        </div>
+        <div class="contact-cta" style="align-self: center;">
+          <a href="https://rentaspuravida.com" target="_blank" rel="noopener" class="btn btn-accent btn-large">
+            <span data-es>Ver disponibilidad</span><span data-en>Check availability</span>
+          </a>
+          <a href="mailto:info@rocamar.cr" class="btn btn-ghost btn-large">
+            <span data-es>Enviar email</span><span data-en>Send email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">Rocamar</a>
+          <p>
+            <span data-es>Tres villas independientes frente al Pacífico en Playa Blanca, Costa Rica.</span>
+            <span data-en>Three independent villas facing the Pacific in Playa Blanca, Costa Rica.</span>
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4><span data-es>Villas</span><span data-en>Villas</span></h4>
+          <ul>
+            <li><a href="garza.html">Garza</a></li>
+            <li><a href="golondrina.html">Golondrina</a></li>
+            <li><a href="iguana.html">Iguana</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4><span data-es>Explorar</span><span data-en>Explore</span></h4>
+          <ul>
+            <li><a href="#gallery"><span data-es>Galería</span><span data-en>Gallery</span></a></li>
+            <li><a href="#location"><span data-es>Ubicación</span><span data-en>Location</span></a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4><span data-es>Reservar</span><span data-en>Book</span></h4>
+          <ul>
+            <li><a href="https://rentaspuravida.com" target="_blank" rel="noopener">rentaspuravida.com</a></li>
+            <li><a href="#contact"><span data-es>Contacto</span><span data-en>Contact</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Rocamar · Playa Blanca, Costa Rica</span>
+        <span><span data-es>Hecho con ☀️ en la costa</span><span data-en>Made with ☀️ on the coast</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Language toggle with localStorage persistence
+    const langToggle = document.getElementById('langToggle');
+    const body = document.body;
+
+    function setLang(lang) {
+      body.setAttribute('data-lang', lang);
+      localStorage.setItem('rocamar-lang', lang);
+      document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    // Initialize from localStorage or default to Spanish
+    const savedLang = localStorage.getItem('rocamar-lang') || 'es';
+    setLang(savedLang);
+
+    langToggle.addEventListener('click', () => {
+      const current = body.getAttribute('data-lang');
+      setLang(current === 'es' ? 'en' : 'es');
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
