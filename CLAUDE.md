@@ -40,6 +40,12 @@ The compose file is `~/tools/open-design/deploy/docker-compose.yml`. The contain
 
 A project's design system is fixed when the project is created; there is no setting for it afterwards, and the picker resets to the default on every page load. Pick it before typing the name.
 
+OD drives a code-agent CLI that it finds by scanning `PATH` **inside the container**, and the image ships none on purpose. Claude Code is mounted in rather than installed: the host's own copy is glibc-linked and the image is Alpine, so `~/tools/claude-musl/` holds the `linux-x64-musl` build, mounted read-only at `/opt/claude` and prepended to `PATH` in the compose file. It authenticates separately from the host — its HOME is `~/tools/claude-home`, not `~/.claude` — so a fresh container needs `/login` once:
+
+```bash
+docker exec -it open-design claude   # then /login
+```
+
 Two consequences worth internalizing:
 
 - A patch applied by hand in `public/` survives until the next `./sync.sh` and then vanishes silently — HTML is copied whole-file, so there is no conflict and no warning. The durable place for a content or markup change is the **Open Design project**, which lives only on devbox at `~/tools/open-design/.od/projects/<uuid>/`.
