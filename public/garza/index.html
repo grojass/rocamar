@@ -3,8 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Villa Pelícano — Rocamar · Playa Blanca, Costa Rica</title>
-  <meta name="description" content="Villa Pelícano: la más espaciosa de Rocamar, con vistas panorámicas al Pacífico, 2 habitaciones y capacidad para 6 personas. Playa Blanca, Costa Rica.">
+  <title>Villa Garza — Rocamar · Playa Blanca, Costa Rica</title>
+  <meta name="description" content="Villa Garza: balcón con vista al mar, 2 habitaciones, capacidad para 5 personas. Una de las tres villas independientes de Rocamar en Playa Blanca.">
+  <link rel="canonical" href="https://rocamar.retailyx.com/garza/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rocamar">
+  <meta property="og:locale" content="es_CR">
+  <meta property="og:url" content="https://rocamar.retailyx.com/garza/">
+  <meta property="og:title" content="Villa Garza — Rocamar · Playa Blanca, Costa Rica">
+  <meta property="og:description" content="Villa Garza: balcón con vista al mar, 2 habitaciones, capacidad para 5 personas. Una de las tres villas independientes de Rocamar en Playa Blanca.">
+  <meta property="og:image" content="https://rocamar.retailyx.com/assets/garza/mpvkd69t-IMG_4879.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Villa Garza — Rocamar · Playa Blanca, Costa Rica">
+  <meta name="twitter:description" content="Villa Garza: balcón con vista al mar, 2 habitaciones, capacidad para 5 personas. Una de las tres villas independientes de Rocamar en Playa Blanca.">
+  <meta name="twitter:image" content="https://rocamar.retailyx.com/assets/garza/mpvkd69t-IMG_4879.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -51,7 +64,9 @@
       padding: 0 clamp(24px, 5vw, 80px);
     }
 
-    /* NAV */
+    /* ═══════════════════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════════════════ */
     .nav {
       position: fixed;
       top: 0;
@@ -112,7 +127,9 @@
       color: var(--ink);
     }
 
-    /* HERO GALLERY */
+    /* ═══════════════════════════════════════════════════════
+       HERO — Gallery header
+    ═══════════════════════════════════════════════════════ */
     .hero {
       padding-top: 100px;
     }
@@ -162,7 +179,9 @@
       color: var(--white);
     }
 
-    /* CONTENT */
+    /* ═══════════════════════════════════════════════════════
+       CONTENT — Two column layout
+    ═══════════════════════════════════════════════════════ */
     .content {
       padding: var(--space-lg) 0 var(--space-section);
     }
@@ -267,7 +286,9 @@
       font-weight: 600;
     }
 
-    /* CTA BANNER */
+    /* ═══════════════════════════════════════════════════════
+       CTA BANNER — Full width below content
+    ═══════════════════════════════════════════════════════ */
     .cta-banner {
       margin-top: var(--space-lg);
       padding: var(--space-md);
@@ -311,7 +332,9 @@
       background: #1da851;
     }
 
-    /* PHOTO GALLERY */
+    /* ═══════════════════════════════════════════════════════
+       PHOTO GALLERY — Full grid
+    ═══════════════════════════════════════════════════════ */
     .gallery-section {
       padding: var(--space-section) 0;
       background: var(--white);
@@ -354,7 +377,9 @@
       transform: scale(1.05);
     }
 
-    /* OTHER VILLAS */
+    /* ═══════════════════════════════════════════════════════
+       OTHER VILLAS — Cross-sell
+    ═══════════════════════════════════════════════════════ */
     .other-villas {
       padding: var(--space-section) 0;
       background: var(--cream);
@@ -422,7 +447,9 @@
       color: var(--muted);
     }
 
-    /* FOOTER */
+    /* ═══════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════ */
     .footer {
       padding: 48px 0;
       background: var(--ink);
@@ -449,8 +476,19 @@
     }
     .footer-links a:hover { color: var(--white); }
 
-    /* RESPONSIVE */
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════ */
     @media (max-width: 1024px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+      }
+      .booking-card {
+        max-width: 500px;
+      }
       .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -482,6 +520,10 @@
       .amenities-grid {
         grid-template-columns: 1fr;
       }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .form-field.full { grid-column: span 1; }
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -495,13 +537,6 @@
         flex-direction: column;
         gap: 24px;
         text-align: center;
-      }
-      .cta-banner {
-        flex-direction: column;
-        text-align: center;
-      }
-      .cta-banner-actions {
-        justify-content: center;
       }
     }
   </style>
@@ -528,20 +563,17 @@
     <div class="wrap">
       <div class="hero-gallery">
         <div class="hero-main">
-          <!-- Sala/living principal con vista -->
-          <img src="/assets/mpvnaxc0-IMG_5009.jpg" alt="Sala de Villa Pelícano con vista al mar">
+          <img src="/assets/garza/mpvkd69t-IMG_4879.jpg" alt="Sala de Villa Garza con vista al mar">
           <button class="view-all-btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
             Ver todas las fotos
           </button>
         </div>
         <div class="hero-side">
           <div class="hero-side-img">
-            <!-- Vista desde el balcón -->
-            <img src="/assets/mpvnaq4g-IMG_5075.jpg" alt="Vista panorámica desde el balcón">
+            <img src="/assets/garza/mpvkd74s-IMG_4880.jpg" alt="Vista desde el balcón">
           </div>
           <div class="hero-side-img">
-            <!-- Habitación -->
-            <img src="/assets/mpvnb3gm-IMG_5013.jpg" alt="Habitación principal">
+            <img src="/assets/garza/mpvkd7u6-IMG_4881.jpg" alt="Cocina de Villa Garza">
           </div>
         </div>
       </div>
@@ -557,13 +589,13 @@
         <div class="main">
           <header class="villa-header">
             <p class="villa-eyebrow">Planta Alta</p>
-            <h1 class="villa-title">Villa Pelícano</h1>
-            <p class="villa-tagline">La más espaciosa, con vistas panorámicas al Pacífico desde cada ventana</p>
+            <h1 class="villa-title">Villa Garza</h1>
+            <p class="villa-tagline">Balcón con vista al mar, perfecta para parejas o familias pequeñas</p>
           </header>
 
           <div class="villa-stats">
             <div class="stat">
-              <span class="stat-value">6</span>
+              <span class="stat-value">5</span>
               <span class="stat-label">Huéspedes</span>
             </div>
             <div class="stat">
@@ -583,24 +615,24 @@
           <div class="villa-description">
             <h3>El espacio</h3>
             <p>
-              Villa Pelícano es la más amplia de Rocamar. Ocupa la planta alta con entrada independiente y las mejores vistas panorámicas al Pacífico. Cada mañana amanecés con el sonido del mar y la luz dorada entrando por los ventanales.
+              Villa Garza ocupa la planta alta con entrada independiente. La luz del Pacífico entra por todas las ventanas — amanecés viendo el mar desde la cama. El balcón es tu espacio para el café de la mañana y el atardecer con una copa de vino.
             </p>
             <p>
-              El balcón es generoso — espacio suficiente para desayunar con toda la familia mientras ven las olas romper en Playa Blanca. Los atardeceres desde acá son inolvidables.
+              El cuarto principal tiene cama King y vista directa al océano. El segundo cuarto tiene un camarote y una cama matrimonial — ideal para niños o amigos.
             </p>
 
             <h3>Distribución de camas</h3>
             <p>
-              <strong>Cuarto principal:</strong> 1 cama King con vista al mar<br>
-              <strong>Cuarto secundario:</strong> 2 camas Queen — ideal para familias con niños o grupos de amigos
+              <strong>Cuarto principal:</strong> 1 cama King<br>
+              <strong>Cuarto secundario:</strong> 1 camarote + 1 cama matrimonial
             </p>
           </div>
 
           <div class="amenities">
             <h3>Comodidades</h3>
             <div class="amenities-grid">
-              <div class="amenity">Balcón panorámico con vista al mar</div>
-              <div class="amenity">Cocina equipada completa</div>
+              <div class="amenity">Balcón con vista al mar</div>
+              <div class="amenity">Cocina equipada</div>
               <div class="amenity">Agua caliente (cocina y baño)</div>
               <div class="amenity">Aire acondicionado</div>
               <div class="amenity">WiFi de alta velocidad</div>
@@ -615,14 +647,14 @@
           <!-- CTA BANNER -->
           <div class="cta-banner">
             <div class="cta-banner-text">
-              <h3>¿Te interesa Villa Pelícano?</h3>
+              <h3>¿Te interesa Villa Garza?</h3>
               <p>Consultá disponibilidad y precios en Rentas Pura Vida</p>
             </div>
             <div class="cta-banner-actions">
               <a href="https://rentaspuravida.com/rocamar" class="btn btn-primary" target="_blank">
                 Ver Disponibilidad
               </a>
-              <a href="https://wa.me/50688888888?text=Hola,%20tengo%20una%20consulta%20sobre%20Villa%20Pelícano" class="whatsapp-btn">
+              <a href="https://wa.me/50688888888?text=Hola,%20tengo%20una%20consulta%20sobre%20Villa%20Garza" class="whatsapp-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
@@ -643,52 +675,29 @@
         <h2>Galería de fotos</h2>
       </header>
       <div class="gallery-grid">
-        <!-- Foto grande principal -->
         <div class="gallery-item large">
-          <img src="/assets/mpvnaxc0-IMG_5009.jpg" alt="Sala con vista al mar">
-        </div>
-        <!-- Habitación principal -->
-        <div class="gallery-item">
-          <img src="/assets/mpvnb3gm-IMG_5013.jpg" alt="Habitación principal con cama King">
-        </div>
-        <!-- Segunda habitación -->
-        <div class="gallery-item">
-          <img src="/assets/mpvnbc9f-IMG_5019.jpg" alt="Segunda habitación con camas Queen">
-        </div>
-        <!-- Cocina -->
-        <div class="gallery-item">
-          <img src="/assets/mpvnbhqz-IMG_5020.jpg" alt="Cocina equipada">
-        </div>
-        <!-- Baño -->
-        <div class="gallery-item">
-          <img src="/assets/mpvnbn8y-IMG_5027.jpg" alt="Baño moderno">
-        </div>
-        <!-- Vista balcón -->
-        <div class="gallery-item">
-          <img src="/assets/mpvnaq4g-IMG_5075.jpg" alt="Vista panorámica desde el balcón">
-        </div>
-        <!-- Detalles -->
-        <div class="gallery-item">
-          <img src="/assets/mpvnbq1p-IMG_5034.jpg" alt="Detalles del espacio">
-        </div>
-        <!-- Atardecer -->
-        <div class="gallery-item">
-          <img src="/assets/mpvncczg-IMG_5042.jpg" alt="Atardecer desde Pelícano">
-        </div>
-        <!-- Interior -->
-        <div class="gallery-item">
-          <img src="/assets/mpvncikq-IMG_5064.jpg" alt="Interior de la villa">
-        </div>
-        <!-- Vista exterior -->
-        <div class="gallery-item">
-          <img src="/assets/mpvncmzy-IMG_5072.jpg" alt="Vista exterior">
-        </div>
-        <!-- WhatsApp photos -->
-        <div class="gallery-item">
-          <img src="/assets/mpvnavo3-WhatsApp-Image-2025-06-21-at-2.41.51-PM.jpeg" alt="Vista de la propiedad">
+          <img src="/assets/garza/mpvkd69t-IMG_4879.jpg" alt="Sala con vista al mar">
         </div>
         <div class="gallery-item">
-          <img src="/assets/mpvnavyb-WhatsApp-Image-2025-06-21-at-2.42.53-PM.jpeg" alt="Área común">
+          <img src="/assets/garza/mpvkd74s-IMG_4880.jpg" alt="Vista desde el balcón">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/garza/mpvkd7u6-IMG_4881.jpg" alt="Cocina equipada">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/garza/mpvkd8ky-IMG_4883.jpg" alt="Habitación principal">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/garza/mpvkdb9x-IMG_4885.jpg" alt="Segunda habitación">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/garza/mpvkdc7n-IMG_4888.jpg" alt="Baño">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/garza/mpvkdd6l-IMG_4889.jpg" alt="Detalles de la cocina">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/garza/mpvkdeyi-IMG_4893.jpg" alt="Vista del balcón">
         </div>
       </div>
     </div>
@@ -702,27 +711,27 @@
         <p>Cada villa tiene entrada independiente y privacidad total</p>
       </header>
       <div class="other-villas-grid">
-        <a href="villa-garza.html" class="other-villa-card">
+        <a href="/pelicano/" class="other-villa-card">
           <div class="other-villa-img">
-            <img src="/assets/mpvkd69t-IMG_4879.jpg" alt="Villa Garza">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--cream-dark), var(--border));display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">Foto próximamente</div>
           </div>
           <div class="other-villa-content">
-            <h3>Villa Garza</h3>
-            <p>Balcón con vista al mar, perfecta para parejas o familias pequeñas.</p>
+            <h3>Villa Pelícano</h3>
+            <p>La más espaciosa, ideal para familias grandes con vistas panorámicas desde el balcón.</p>
             <div class="other-villa-meta">
-              <span>5 huéspedes</span>
+              <span>6 huéspedes</span>
               <span>2 habitaciones</span>
               <span>1 baño</span>
             </div>
           </div>
         </a>
-        <a href="villa-iguana.html" class="other-villa-card">
+        <a href="/iguana/" class="other-villa-card">
           <div class="other-villa-img">
             <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--cream-dark), var(--border));display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">Foto próximamente</div>
           </div>
           <div class="other-villa-content">
             <h3>Villa Iguana</h3>
-            <p>Planta baja con acceso al jardín privado, terraza con vista al mar, y rancho techado.</p>
+            <p>Planta baja con acceso directo al jardín privado y rancho techado.</p>
             <div class="other-villa-meta">
               <span>6-8 huéspedes</span>
               <span>3 habitaciones</span>
