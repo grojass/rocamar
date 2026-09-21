@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iguana · Rocamar · Playa Blanca, Costa Rica</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f8fafb;
+      --fg: #1a3038;
+      --muted: #5c7078;
+      --border: #e2e8ea;
+      --accent: #2b9e8f;
+      --accent-warm: #e87a5f;
+      --accent-warm-hover: #d66a4f;
+
+      --font-display: 'Avenir Next', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 50%;
+
+      --max-width: 1280px;
+      --nav-height: 72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    [data-lang="en"] [data-es],
+    [data-lang="es"] [data-en] { display: none; }
+
+    .display {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+    }
+
+    .lead {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .kicker {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-accent {
+      background: var(--accent-warm);
+      color: white;
+    }
+    .btn-accent:hover { background: var(--accent-warm-hover); transform: scale(0.98); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { background: var(--surface); }
+
+    .btn-large { padding: 1rem 2rem; font-size: 1.0625rem; }
+    .btn-block { width: 100%; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9375rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .nav-back:hover { color: var(--fg); }
+    .nav-back svg { stroke: currentColor; }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .lang-toggle span { opacity: 0.5; }
+    .lang-toggle span.active { opacity: 1; color: var(--accent); }
+
+    /* Photo Grid Hero */
+    .photo-grid {
+      display: grid;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .photo-grid {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 480px;
+      }
+    }
+    .photo-main {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+      min-height: 280px;
+    }
+    @media (min-width: 768px) {
+      .photo-main { grid-row: span 2; }
+    }
+    .photo-secondary {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8125rem;
+      min-height: 140px;
+    }
+    @media (max-width: 767px) {
+      .photo-secondary { display: none; }
+      .photo-secondary:first-of-type { display: flex; }
+    }
+
+    /* Main content layout */
+    .detail-layout {
+      display: grid;
+      gap: var(--space-xl);
+      padding-bottom: var(--space-2xl);
+    }
+    @media (min-width: 1024px) {
+      .detail-layout {
+        grid-template-columns: 1fr 380px;
+        align-items: start;
+      }
+    }
+
+    /* Unit header */
+    .unit-header {
+      margin-bottom: var(--space-lg);
+    }
+    .unit-tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-warm);
+      background: rgba(232, 122, 95, 0.1);
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .unit-header .display { margin-bottom: var(--space-sm); }
+    .unit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .unit-meta span::after {
+      content: '·';
+      margin-left: var(--space-sm);
+    }
+    .unit-meta span:last-child::after { display: none; }
+
+    /* Section */
+    .detail-section {
+      padding: var(--space-lg) 0;
+      border-top: 1px solid var(--border);
+    }
+    .detail-section:first-child { border-top: none; padding-top: 0; }
+    .detail-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: rgba(232, 122, 95, 0.08);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .highlight-box h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--accent-warm);
+      margin-bottom: 0.5rem;
+    }
+    .highlight-box p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Amenities grid */
+    .amenities-grid {
+      display: grid;
+      gap: var(--space-md);
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 640px) {
+      .amenities-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .amenity-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .amenity-icon svg { stroke: var(--accent); width: 18px; height: 18px; }
+    .amenity-icon.coral svg { stroke: var(--accent-warm); }
+    .amenity span {
+      font-size: 0.9375rem;
+      color: var(--fg);
+    }
+
+    /* Bed config */
+    .bed-grid {
+      display: grid;
+      gap: var(--space-md);
+    }
+    @media (min-width: 480px) {
+      .bed-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .bed-item {
+      padding: var(--space-md);
+      background: var(--surface);
+      border-radius: var(--radius-md);
+    }
+    .bed-item h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .bed-item p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Booking panel */
+    .booking-panel {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+    @media (min-width: 1024px) {
+      .booking-panel {
+        position: sticky;
+        top: calc(var(--nav-height) + var(--space-md));
+      }
+    }
+    .booking-capacity {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+    .booking-note {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: var(--space-md);
+    }
+    .booking-cta { margin-bottom: var(--space-md); }
+    .booking-disclaimer {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .booking-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: var(--space-md) 0;
+    }
+    .booking-other h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: var(--space-sm);
+    }
+    .booking-other-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .booking-other-links a {
+      font-size: 0.9375rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .booking-other-links a:hover { text-decoration: underline; }
+
+    /* Mobile sticky CTA */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: var(--space-sm) var(--space-md);
+      z-index: 90;
+    }
+    @media (max-width: 1023px) {
+      .mobile-cta { display: flex; gap: var(--space-sm); align-items: center; }
+      .mobile-cta-info { flex: 1; }
+      .mobile-cta-capacity { font-weight: 600; font-size: 0.9375rem; }
+      .mobile-cta-note { font-size: 0.8125rem; color: var(--muted); }
+      body { padding-bottom: 80px; }
+    }
+
+    /* Other units */
+    .other-units {
+      padding: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .other-units h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+    .units-row {
+      display: grid;
+      gap: var(--space-md);
+    }
+    @media (min-width: 640px) {
+      .units-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    .unit-card {
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s;
+    }
+    .unit-card:hover { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); }
+    .unit-card-image {
+      aspect-ratio: 16 / 9;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8125rem;
+    }
+    .unit-card-body { padding: var(--space-md); }
+    .unit-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .unit-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body data-lang="es">
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        <span data-es>Volver</span><span data-en>Back</span>
+      </a>
+
+      <a href="index.html" class="nav-logo">Rocamar</a>
+
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle">
+          <span class="active" data-lang-btn="es">ES</span>
+          <span>/</span>
+          <span data-lang-btn="en">EN</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-lg);">
+    <!-- Photo Grid -->
+    <div class="photo-grid">
+      <div class="photo-main">
+        <span data-es>Foto principal — Iguana jardín y rancho</span>
+        <span data-en>Main photo — Iguana garden and rancho</span>
+      </div>
+      <div class="photo-secondary">
+        <span data-es>Terraza con vista</span>
+        <span data-en>Terrace with view</span>
+      </div>
+      <div class="photo-secondary">
+        <span data-es>Habitación principal</span>
+        <span data-en>Main bedroom</span>
+      </div>
+    </div>
+
+    <!-- Detail Layout -->
+    <div class="detail-layout">
+      <div class="detail-content">
+        <!-- Header -->
+        <div class="unit-header">
+          <span class="unit-tag"><span data-es>Planta baja · Jardín</span><span data-en>Ground floor · Garden</span></span>
+          <h1 class="display">Iguana</h1>
+          <div class="unit-meta">
+            <span><span data-es>3 habitaciones</span><span data-en>3 bedrooms</span></span>
+            <span><span data-es>3 baños</span><span data-en>3 baths</span></span>
+            <span><span data-es>Capacidad 6-8</span><span data-en>Sleeps 6-8</span></span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="detail-section">
+          <p class="lead">
+            <span data-es>Vista al mar desde la terraza, jardín privado donde los niños corren apenas abren la puerta. Tres habitaciones con baño propio cada una, rancho techado para almuerzos largos — todo exclusivo de esta villa. La más espaciosa de Rocamar, ideal para familias grandes que quieren su propio mundo.</span>
+            <span data-en>Ocean view from the terrace, a private garden where kids run free the moment the door opens. Three en-suite bedrooms, a covered rancho for long lunches — all exclusive to this villa. The most spacious at Rocamar, ideal for larger families who want their own world.</span>
+          </p>
+        </div>
+
+        <!-- Exclusive highlight -->
+        <div class="detail-section">
+          <div class="highlight-box">
+            <h4><span data-es>Solo en Iguana</span><span data-en>Only at Iguana</span></h4>
+            <p>
+              <span data-es>Jardín privado exclusivo + rancho techado propio. Las otras villas solo comparten parqueo — Iguana tiene su propio espacio exterior cerrado donde los niños juegan seguros.</span>
+              <span data-en>Exclusive private garden + your own covered rancho. Other villas only share parking — Iguana has its own enclosed outdoor space where kids play safely.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Amenities -->
+        <div class="detail-section">
+          <h3><span data-es>Qué incluye</span><span data-en>What's included</span></h3>
+          <div class="amenities-grid">
+            <div class="amenity">
+              <div class="amenity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
+              </div>
+              <span><span data-es>Entrada privada</span><span data-en>Private entrance</span></span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon coral">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <span><span data-es>Jardín privado</span><span data-en>Private garden</span></span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon coral">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3h18v18H3z"/>
+                  <path d="M3 9h18"/>
+                  <path d="M9 21V9"/>
+                </svg>
+              </div>
+              <span><span data-es>Rancho techado</span><span data-en>Covered rancho</span></span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+                  <polyline points="17 2 12 7 7 2"/>
+                </svg>
+              </div>
+              <span><span data-es>Terraza con vista</span><span data-en>Terrace with view</span></span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+              </div>
+              <span><span data-es>Cocina equipada</span><span data-en>Equipped kitchen</span></span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <span><span data-es>A/C en habitaciones</span><span data-en>A/C in bedrooms</span></span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                  <line x1="12" y1="20" x2="12.01" y2="20"/>
+                </svg>
+              </div>
+              <span>WiFi</span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="5"/>
+                  <line x1="12" y1="1" x2="12" y2="3"/>
+                  <line x1="12" y1="21" x2="12" y2="23"/>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                  <line x1="1" y1="12" x2="3" y2="12"/>
+                  <line x1="21" y1="12" x2="23" y2="12"/>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+              </div>
+              <span><span data-es>Agua caliente</span><span data-en>Hot water</span></span>
+            </div>
+            <div class="amenity">
+              <div class="amenity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="3" y1="9" x2="21" y2="9"/>
+                  <line x1="9" y1="21" x2="9" y2="9"/>
+                </svg>
+              </div>
+              <span><span data-es>3 baños privados</span><span data-en>3 en-suite baths</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beds -->
+        <div class="detail-section">
+          <h3><span data-es>Configuración de camas</span><span data-en>Bed configuration</span></h3>
+          <div class="bed-grid">
+            <div class="bed-item">
+              <h4><span data-es>Habitación 1</span><span data-en>Bedroom 1</span></h4>
+              <p><span data-es>1 cama King + baño privado</span><span data-en>1 King bed + en-suite bath</span></p>
+            </div>
+            <div class="bed-item">
+              <h4><span data-es>Habitación 2</span><span data-en>Bedroom 2</span></h4>
+              <p><span data-es>1 cama Queen + baño privado</span><span data-en>1 Queen bed + en-suite bath</span></p>
+            </div>
+            <div class="bed-item">
+              <h4><span data-es>Habitación 3</span><span data-en>Bedroom 3</span></h4>
+              <p><span data-es>1 cama Queen + baño privado</span><span data-en>1 Queen bed + en-suite bath</span></p>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--muted); margin-top: var(--space-md);">
+            <span data-es>+ Sofá cama en sala para 2 personas adicionales</span>
+            <span data-en>+ Sofa bed in living room for 2 additional guests</span>
+          </p>
+        </div>
+
+        <!-- Location note -->
+        <div class="detail-section">
+          <h3><span data-es>Ubicación en la propiedad</span><span data-en>Location on property</span></h3>
+          <p class="lead">
+            <span data-es>Iguana ocupa toda la planta baja con acceso directo al jardín y rancho privados. Los niños salen corriendo apenas abrís la puerta. La terraza mira al mar entre los árboles. Comparte únicamente el parqueo con Garza y Golondrina — el resto es exclusivo.</span>
+            <span data-en>Iguana takes up the entire ground floor with direct access to the private garden and rancho. Kids run out the moment you open the door. The terrace faces the sea through the trees. Shares only parking with Garza and Golondrina — everything else is exclusive.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Booking Panel -->
+      <aside class="booking-panel">
+        <div class="booking-capacity">
+          <span data-es>Capacidad · 6-8 personas</span>
+          <span data-en>Sleeps · 6-8 guests</span>
+        </div>
+        <p class="booking-note">
+          <span data-es>3 habitaciones · 3 baños · Jardín + Rancho</span>
+          <span data-en>3 bedrooms · 3 baths · Garden + Rancho</span>
+        </p>
+        <div class="booking-cta">
+          <a href="https://rentaspuravida.com" target="_blank" rel="noopener" class="btn btn-accent btn-large btn-block">
+            <span data-es>Ver disponibilidad</span>
+            <span data-en>Check availability</span>
+          </a>
+        </div>
+        <p class="booking-disclaimer">
+          <span data-es>Reservas a través de rentaspuravida.com</span>
+          <span data-en>Bookings through rentaspuravida.com</span>
+        </p>
+        <hr class="booking-divider">
+        <div class="booking-other">
+          <h4><span data-es>Otras villas</span><span data-en>Other villas</span></h4>
+          <div class="booking-other-links">
+            <a href="garza.html">Garza · <span data-es>5 personas</span><span data-en>5 guests</span></a>
+            <a href="golondrina.html">Golondrina · <span data-es>6 personas</span><span data-en>6 guests</span></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Other units -->
+  <section class="other-units">
+    <div class="container">
+      <h3><span data-es>Otras villas en Rocamar</span><span data-en>Other villas at Rocamar</span></h3>
+      <div class="units-row">
+        <a href="garza.html" class="unit-card">
+          <div class="unit-card-image">
+            <span data-es>Foto Garza</span><span data-en>Garza photo</span>
+          </div>
+          <div class="unit-card-body">
+            <h4>Garza</h4>
+            <p><span data-es>Planta alta · 5 personas · Vista al mar</span><span data-en>Upper floor · 5 guests · Sea view</span></p>
+          </div>
+        </a>
+        <a href="golondrina.html" class="unit-card">
+          <div class="unit-card-image">
+            <span data-es>Foto Golondrina</span><span data-en>Golondrina photo</span>
+          </div>
+          <div class="unit-card-body">
+            <h4>Golondrina</h4>
+            <p><span data-es>Planta alta · 6 personas · Vista al mar</span><span data-en>Upper floor · 6 guests · Sea view</span></p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile sticky CTA -->
+  <div class="mobile-cta">
+    <div class="mobile-cta-info">
+      <div class="mobile-cta-capacity"><span data-es>Capacidad 6-8</span><span data-en>Sleeps 6-8</span></div>
+      <div class="mobile-cta-note">Iguana · <span data-es>Jardín privado</span><span data-en>Private garden</span></div>
+    </div>
+    <a href="https://rentaspuravida.com" target="_blank" rel="noopener" class="btn btn-accent">
+      <span data-es>Reservar</span><span data-en>Book</span>
+    </a>
+  </div>
+
+  <script>
+    const langToggle = document.getElementById('langToggle');
+    const body = document.body;
+
+    function setLang(lang) {
+      body.setAttribute('data-lang', lang);
+      localStorage.setItem('rocamar-lang', lang);
+      document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    const savedLang = localStorage.getItem('rocamar-lang') || 'es';
+    setLang(savedLang);
+
+    langToggle.addEventListener('click', () => {
+      const current = body.getAttribute('data-lang');
+      setLang(current === 'es' ? 'en' : 'es');
+    });
+  </script>
+</body>
+</html>

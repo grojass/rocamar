@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Villa Iguana — Tu Bungalow Tropical · Rocamar</title>
+  <meta name="description" content="Villa Iguana: 3 habitaciones con baño propio, jardín privado, rancho techado y terraza con vista al mar. El bungalow tropical perfecto para familias.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Tropical palette — greens and earth tones */
+      --palm: oklch(42% 0.12 155);
+      --palm-light: oklch(52% 0.10 155);
+      --palm-dark: oklch(32% 0.10 155);
+      --sand: #FAF7F2;
+      --sand-warm: #F5F0E8;
+      --earth: #8B7355;
+      --earth-light: #A89070;
+      --cream: #FFFDF8;
+      --ink: #2A2520;
+      --ink-soft: #4A4540;
+      --muted: #8A857D;
+      --ocean: oklch(52% 0.12 200);
+      --coral: oklch(62% 0.15 35);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, system-ui, sans-serif;
+
+      --radius-soft: 24px;
+      --radius-organic: 40% 60% 60% 40% / 60% 40% 60% 40%;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--sand);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ═══════════════════════════════════════════════════════
+       NAV — Minimal, organic feel
+    ═══════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .nav.scrolled {
+      background: rgba(250, 247, 242, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    }
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--cream);
+      transition: color 0.3s;
+    }
+    .nav.scrolled .brand { color: var(--ink); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s;
+    }
+    .nav.scrolled .nav-links a { color: var(--ink-soft); }
+    .nav-links a:hover { color: var(--palm-light); }
+    .btn-nav {
+      padding: 12px 24px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: var(--cream);
+      color: var(--palm-dark);
+      border-radius: var(--radius-soft);
+      transition: all 0.25s ease;
+    }
+    .btn-nav:hover {
+      background: var(--palm);
+      color: var(--cream);
+    }
+    .nav.scrolled .btn-nav {
+      background: var(--palm);
+      color: var(--cream);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       HERO — Immersive garden view
+    ═══════════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(42, 37, 32, 0.85) 0%,
+        rgba(42, 37, 32, 0.4) 40%,
+        rgba(42, 37, 32, 0.1) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: clamp(100px, 15vh, 160px) clamp(24px, 5vw, 60px) clamp(60px, 10vh, 100px);
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--palm-light);
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--palm-light);
+      border-radius: 2px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 9vw, 88px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--cream);
+      margin: 0 0 24px;
+      max-width: 800px;
+    }
+    .hero-lead {
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      margin: 0;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--cream);
+    }
+    .hero-stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       INTRO — Organic flowing section
+    ═══════════════════════════════════════════════════════ */
+    .intro {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--cream);
+    }
+    .intro-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 120px);
+      align-items: center;
+    }
+    .intro-visual {
+      position: relative;
+    }
+    .intro-visual img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius-soft);
+    }
+    .intro-visual::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      right: 16px;
+      bottom: 16px;
+      border: 2px solid var(--palm-light);
+      border-radius: var(--radius-soft);
+      opacity: 0.4;
+      z-index: -1;
+    }
+    .leaf-accent {
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      width: 100px;
+      height: 100px;
+      background: var(--palm-light);
+      opacity: 0.15;
+      border-radius: var(--radius-organic);
+    }
+    .intro-content {
+      max-width: 520px;
+    }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--palm);
+      margin-bottom: 24px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--palm);
+      opacity: 0.3;
+      max-width: 60px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 24px;
+    }
+    .intro-text {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+    }
+    .intro-text p { margin: 0 0 20px; }
+    .intro-text p:last-child { margin: 0; }
+    .highlight {
+      color: var(--palm);
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       SPACES — Indoor/Outdoor connection
+    ═══════════════════════════════════════════════════════ */
+    .spaces {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--sand-warm);
+    }
+    .spaces-header {
+      max-width: 1400px;
+      margin: 0 auto clamp(48px, 8vw, 80px);
+      padding: 0 clamp(24px, 5vw, 60px);
+      text-align: center;
+    }
+    .spaces-header .section-title {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .spaces-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .space-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-soft);
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .space-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .space-card:hover img {
+      transform: scale(1.05);
+    }
+    .space-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(42, 37, 32, 0.8) 0%,
+        rgba(42, 37, 32, 0) 50%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+    }
+    .space-card-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-style: italic;
+      color: var(--cream);
+      margin: 0 0 8px;
+    }
+    .space-card-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+    .space-card.featured {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       ROOMS — The three bedrooms
+    ═══════════════════════════════════════════════════════ */
+    .rooms {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--cream);
+    }
+    .rooms-header {
+      max-width: 1400px;
+      margin: 0 auto clamp(48px, 8vw, 80px);
+      padding: 0 clamp(24px, 5vw, 60px);
+    }
+    .rooms-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+    .room {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center;
+    }
+    .room:nth-child(even) {
+      grid-template-columns: 0.8fr 1.2fr;
+    }
+    .room:nth-child(even) .room-visual { order: 2; }
+    .room:nth-child(even) .room-content { order: 1; }
+    .room-visual {
+      position: relative;
+    }
+    .room-visual img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-soft);
+    }
+    .room-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 18px;
+      background: var(--cream);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--palm-dark);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .room-content h3 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink);
+      margin: 0 0 16px;
+    }
+    .room-content p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .room-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .room-feature {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--sand);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      border-radius: 20px;
+    }
+    .room-feature svg {
+      width: 16px;
+      height: 16px;
+      color: var(--palm);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       GALLERY — Masonry organic grid
+    ═══════════════════════════════════════════════════════ */
+    .gallery {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--sand-warm);
+    }
+    .gallery-header {
+      max-width: 1400px;
+      margin: 0 auto clamp(48px, 8vw, 80px);
+      padding: 0 clamp(24px, 5vw, 60px);
+      text-align: center;
+    }
+    .gallery-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+      gap: 16px;
+    }
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-item.wide { grid-column: span 2; }
+
+    /* ═══════════════════════════════════════════════════════
+       CTA — Tropical feel
+    ═══════════════════════════════════════════════════════ */
+    .cta {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--palm-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: var(--palm);
+      opacity: 0.1;
+      border-radius: var(--radius-organic);
+    }
+    .cta-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 60px);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.15;
+      color: var(--cream);
+      margin: 0 0 24px;
+    }
+    .cta p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      margin: 0 0 40px;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: var(--radius-soft);
+      transition: all 0.25s ease;
+    }
+    .btn-light {
+      background: var(--cream);
+      color: var(--palm-dark);
+    }
+    .btn-light:hover {
+      background: var(--sand);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════ */
+    .footer {
+      padding: 48px 0;
+      background: var(--ink);
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .footer p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+    .footer a {
+      color: var(--palm-light);
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: var(--cream); }
+
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .intro-grid,
+      .room {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .room:nth-child(even) .room-visual,
+      .room:nth-child(even) .room-content { order: unset; }
+      .spaces-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .space-card.featured {
+        grid-column: span 2;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .spaces-grid {
+        grid-template-columns: 1fr;
+      }
+      .space-card.featured {
+        grid-column: span 1;
+        aspect-ratio: 4/3;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+      }
+      .gallery-item.tall,
+      .gallery-item.wide {
+        grid-row: span 1;
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="rocamar-landing-luxury.html" class="brand">Rocamar</a>
+      <div class="nav-links">
+        <a href="rocamar-landing-luxury.html">Inicio</a>
+        <a href="villa-garza.html">Garza</a>
+        <a href="villa-pelicano.html">Pelícano</a>
+        <a href="#espacios">Espacios</a>
+      </div>
+      <a href="https://rentaspuravida.com/rocamar" target="_blank" class="btn-nav">Ver Disponibilidad</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/assets/iguana-jardin-panoramica.jpeg" alt="Jardín privado de Villa Iguana con rancho techado">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Planta baja · Jardín privado</span>
+      <h1>Villa Iguana</h1>
+      <p class="hero-lead">Tu bungalow tropical. Tres habitaciones con baño propio, jardín privado donde los niños corren libres, y un rancho techado para esos almuerzos que no quieren terminar.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">6–8</span>
+          <span class="hero-stat-label">Huéspedes</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">3</span>
+          <span class="hero-stat-label">Habitaciones</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">3</span>
+          <span class="hero-stat-label">Baños</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">∞</span>
+          <span class="hero-stat-label">Naturaleza</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro-grid">
+      <div class="intro-visual">
+        <img src="/assets/iguana-jardin-exterior.jpeg" alt="Jardín privado de Villa Iguana">
+        <div class="leaf-accent"></div>
+      </div>
+      <div class="intro-content">
+        <span class="section-label">La conexión</span>
+        <h2 class="section-title">Donde adentro y afuera se encuentran</h2>
+        <div class="intro-text">
+          <p>Villa Iguana no es solo una villa — es una forma de vivir las vacaciones. <span class="highlight">La puerta abre directo al jardín</span>, sin pasillos, sin escaleras, sin barreras entre tu café de la mañana y el sonido de los pájaros.</p>
+          <p>Es la única villa de Rocamar con jardín privado y rancho techado propio. Mientras los niños corren en la grama, vos preparás el almuerzo bajo techo, con la brisa del Pacífico de fondo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPACES -->
+  <section class="spaces" id="espacios">
+    <div class="spaces-header">
+      <span class="section-label">Los espacios</span>
+      <h2 class="section-title">Interior y exterior, un solo flujo</h2>
+    </div>
+    <div class="spaces-grid">
+      <div class="space-card featured">
+        <img src="/assets/iguana-rancho-techado.jpeg" alt="Rancho techado con mesa para almuerzos">
+        <div class="space-card-overlay">
+          <h3 class="space-card-title">Jardín + Rancho Techado</h3>
+          <p class="space-card-desc">Área verde privada con rancho techado para almuerzos y reuniones al aire libre</p>
+        </div>
+      </div>
+      <div class="space-card">
+        <img src="/assets/iguana-terraza-mesa.jpeg" alt="Terraza con vista al mar">
+        <div class="space-card-overlay">
+          <h3 class="space-card-title">Terraza</h3>
+          <p class="space-card-desc">Vista al mar desde la terraza principal</p>
+        </div>
+      </div>
+      <div class="space-card">
+        <div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,var(--palm-light),var(--earth-light));display:flex;align-items:center;justify-content:center;color:var(--palm);font-size:14px;">Foto pendiente</div>
+        <div class="space-card-overlay">
+          <h3 class="space-card-title">Cocina</h3>
+          <p class="space-card-desc">Completamente equipada con agua caliente</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS -->
+  <section class="rooms">
+    <div class="rooms-header">
+      <span class="section-label">Las habitaciones</span>
+      <h2 class="section-title">Tres cuartos, tres baños — cada quien su espacio</h2>
+    </div>
+    <div class="rooms-grid">
+      <!-- Room 1 -->
+      <div class="room">
+        <div class="room-visual">
+          <img src="/assets/iguana-habitacion-principal-cama.jpeg" alt="Habitación principal con cama King">
+          <span class="room-badge">Principal</span>
+        </div>
+        <div class="room-content">
+          <h3>Habitación Principal</h3>
+          <p>Cama King con vista a la vegetación. Baño completo propio. El espacio más privado de la villa, perfecto para descansar después de un día de playa.</p>
+          <div class="room-features">
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="20" height="12" rx="2"/><path d="M7 9V7a5 5 0 0110 0v2"/></svg>
+              Cama King
+            </span>
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M3 9l2-4h14l2 4"/></svg>
+              Baño privado
+            </span>
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/><circle cx="12" cy="12" r="4"/></svg>
+              Agua caliente
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Room 2 -->
+      <div class="room">
+        <div class="room-visual">
+          <img src="/assets/iguana-segunda-habitacion-cama.jpeg" alt="Segunda habitación con cama Queen y escalera al altillo">
+          <span class="room-badge">Segunda</span>
+        </div>
+        <div class="room-content">
+          <h3>Segunda Habitación</h3>
+          <p>Cama Queen amplia con su propio baño completo. Luz natural abundante y ventilación cruzada para noches frescas sin aire acondicionado.</p>
+          <div class="room-features">
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="20" height="12" rx="2"/><path d="M7 9V7a5 5 0 0110 0v2"/></svg>
+              Cama Queen
+            </span>
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M3 9l2-4h14l2 4"/></svg>
+              Baño privado
+            </span>
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/><circle cx="12" cy="12" r="4"/></svg>
+              Agua caliente
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Room 3 -->
+      <div class="room">
+        <div class="room-visual">
+          <img src="/assets/iguana-tercera-habitacion.jpeg" alt="Tercera habitación con cama Queen y sofá cama">
+          <span class="room-badge">Tercera</span>
+        </div>
+        <div class="room-content">
+          <h3>Tercera Habitación</h3>
+          <p>La habitación más grande — cama Queen amplia más sofá cama para huéspedes adicionales. Baño completo propio. Ideal para niños o esa pareja extra que se une al viaje.</p>
+          <div class="room-features">
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="20" height="12" rx="2"/><path d="M7 9V7a5 5 0 0110 0v2"/></svg>
+              Cama Queen
+            </span>
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 18h16M4 6h16M6 6v12M18 6v12"/></svg>
+              Sofá cama
+            </span>
+            <span class="room-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M3 9l2-4h14l2 4"/></svg>
+              Baño privado
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery-header">
+      <span class="section-label">La galería</span>
+      <h2 class="section-title">Un recorrido visual</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img src="/assets/iguana-jardin-verde.jpeg" alt="Jardín privado">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-vista-mar.jpeg" alt="Vista al mar desde la terraza">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-comedor.jpeg" alt="Comedor">
+      </div>
+      <div class="gallery-item tall">
+        <img src="/assets/iguana-terraza-hamaca.jpeg" alt="Baño con ducha">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-habitacion-principal-cama.jpeg" alt="Baño">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-entrada-exterior.jpeg" alt="Entrada exterior">
+      </div>
+      <div class="gallery-item wide">
+        <img src="/assets/iguana-rancho-techado.jpeg" alt="Rancho techado">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-sala-sofa.jpeg" alt="Sala con sofá">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-habitacion-principal-hamaca.jpeg" alt="Habitación principal - segunda vista">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/mpvol948-WhatsApp-Image-2026-05-24-at-3.17.48-PM.jpeg" alt="Baño habitación principal">
+      </div>
+      <div class="gallery-item wide">
+        <img src="/assets/iguana-segunda-habitacion-bano.jpeg" alt="Baño con piso de piedra">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-sala-vista-arriba.jpeg" alt="Vista desde arriba - sala y jardín">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-segunda-habitacion-cama.jpeg" alt="Habitación con cama azul y decoración">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/iguana-segunda-habitacion-vista.jpeg" alt="Habitación con escalera al altillo">
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/mpvoinjn-WhatsApp-Image-2026-05-24-at-3.19.44-PM.jpeg" alt="Vista de la villa">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>¿Lista tu escapada tropical?</h2>
+      <p>Consultá disponibilidad y precios en Rentas Pura Vida. Te responden por WhatsApp en minutos.</p>
+      <div class="cta-buttons">
+        <a href="https://rentaspuravida.com/rocamar" target="_blank" class="btn btn-light">Ver Disponibilidad</a>
+        <a href="https://wa.me/50688888888" target="_blank" class="btn btn-outline">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">Rocamar</div>
+    <p>Playa Blanca, Punta Leona · Costa Rica<br>Reservas a través de <a href="https://rentaspuravida.com" target="_blank">Rentas Pura Vida</a></p>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>

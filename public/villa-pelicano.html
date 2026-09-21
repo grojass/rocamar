@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Villa Pelícano — Rocamar · Playa Blanca, Costa Rica</title>
+  <meta name="description" content="Villa Pelícano: la más espaciosa de Rocamar, con vistas panorámicas al Pacífico, 2 habitaciones y capacidad para 6 personas. Playa Blanca, Costa Rica.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF8F5;
+      --cream-dark: #F5F2ED;
+      --white: #FFFFFF;
+      --ink: #1A1915;
+      --ink-soft: #3D3A33;
+      --muted: #8A8378;
+      --border: #E8E4DD;
+      --accent: oklch(52% 0.12 195);
+      --gold: #C9A86C;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+      --space-section: clamp(80px, 10vw, 140px);
+      --space-lg: clamp(48px, 6vw, 80px);
+      --space-md: clamp(32px, 4vw, 48px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .nav-links a {
+      color: var(--ink-soft);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+      border: 1px solid var(--ink);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    /* HERO GALLERY */
+    .hero {
+      padding-top: 100px;
+    }
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 8px;
+      height: clamp(400px, 60vh, 600px);
+    }
+    .hero-main {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+    }
+    .hero-side-img {
+      overflow: hidden;
+    }
+    .hero-side-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .view-all-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: var(--white);
+      color: var(--ink);
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-all-btn:hover {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    /* CONTENT */
+    .content {
+      padding: var(--space-lg) 0 var(--space-section);
+    }
+    .content-grid {
+      display: block;
+      max-width: 800px;
+    }
+
+    .villa-header {
+      margin-bottom: var(--space-md);
+    }
+    .villa-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .villa-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+    .villa-tagline {
+      font-size: 18px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .villa-stats {
+      display: flex;
+      gap: 32px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--space-md);
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .villa-description h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 500;
+      font-style: italic;
+      margin: 0 0 16px;
+    }
+    .villa-description p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin: 0 0 20px;
+    }
+
+    .amenities {
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border);
+    }
+    .amenities h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 500;
+      font-style: italic;
+      margin: 0 0 20px;
+    }
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+    }
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--ink-soft);
+    }
+    .amenity::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* CTA BANNER */
+    .cta-banner {
+      margin-top: var(--space-lg);
+      padding: var(--space-md);
+      background: var(--white);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .cta-banner-text h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      font-style: italic;
+      margin: 0 0 8px;
+    }
+    .cta-banner-text p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .cta-banner-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      background: #25D366;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .whatsapp-btn:hover {
+      background: #1da851;
+    }
+
+    /* PHOTO GALLERY */
+    .gallery-section {
+      padding: var(--space-section) 0;
+      background: var(--white);
+      position: relative;
+      z-index: 2;
+    }
+    .gallery-header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+    .gallery-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      font-style: italic;
+      margin: 0;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* OTHER VILLAS */
+    .other-villas {
+      padding: var(--space-section) 0;
+      background: var(--cream);
+    }
+    .other-villas-header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+    .other-villas-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      font-style: italic;
+      margin: 0 0 12px;
+    }
+    .other-villas-header p {
+      font-size: 16px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .other-villas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .other-villa-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .other-villa-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .other-villa-img {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+    .other-villa-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .other-villa-content {
+      padding: 28px;
+    }
+    .other-villa-content h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      font-style: italic;
+      margin: 0 0 8px;
+    }
+    .other-villa-content p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin: 0 0 16px;
+      line-height: 1.6;
+    }
+    .other-villa-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 48px 0;
+      background: var(--ink);
+      color: var(--white);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-style: italic;
+    }
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .gallery-item.large {
+        grid-column: span 2;
+        grid-row: span 1;
+        aspect-ratio: 16/9;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-gallery {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .hero-main {
+        height: 300px;
+      }
+      .hero-side {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        height: 150px;
+      }
+      .villa-stats {
+        flex-wrap: wrap;
+        gap: 20px 32px;
+      }
+      .amenities-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .gallery-item.large {
+        grid-column: span 2;
+      }
+      .other-villas-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+      }
+      .cta-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .cta-banner-actions {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a href="landing.html" class="brand">Rocamar</a>
+        <div class="nav-links">
+          <a href="landing.html#villas">Villas</a>
+          <a href="landing.html#ubicacion">Ubicación</a>
+          <a href="landing.html#faq">FAQ</a>
+        </div>
+        <a href="https://rentaspuravida.com/rocamar" class="btn btn-primary" target="_blank">Ver Disponibilidad</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO GALLERY -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-gallery">
+        <div class="hero-main">
+          <!-- Sala/living principal con vista -->
+          <img src="/assets/mpvnaxc0-IMG_5009.jpg" alt="Sala de Villa Pelícano con vista al mar">
+          <button class="view-all-btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+            Ver todas las fotos
+          </button>
+        </div>
+        <div class="hero-side">
+          <div class="hero-side-img">
+            <!-- Vista desde el balcón -->
+            <img src="/assets/mpvnaq4g-IMG_5075.jpg" alt="Vista panorámica desde el balcón">
+          </div>
+          <div class="hero-side-img">
+            <!-- Habitación -->
+            <img src="/assets/mpvnb3gm-IMG_5013.jpg" alt="Habitación principal">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="content">
+    <div class="wrap">
+      <div class="content-grid">
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+          <header class="villa-header">
+            <p class="villa-eyebrow">Planta Alta</p>
+            <h1 class="villa-title">Villa Pelícano</h1>
+            <p class="villa-tagline">La más espaciosa, con vistas panorámicas al Pacífico desde cada ventana</p>
+          </header>
+
+          <div class="villa-stats">
+            <div class="stat">
+              <span class="stat-value">6</span>
+              <span class="stat-label">Huéspedes</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">2</span>
+              <span class="stat-label">Habitaciones</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">1</span>
+              <span class="stat-label">Baño</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">1</span>
+              <span class="stat-label">Balcón</span>
+            </div>
+          </div>
+
+          <div class="villa-description">
+            <h3>El espacio</h3>
+            <p>
+              Villa Pelícano es la más amplia de Rocamar. Ocupa la planta alta con entrada independiente y las mejores vistas panorámicas al Pacífico. Cada mañana amanecés con el sonido del mar y la luz dorada entrando por los ventanales.
+            </p>
+            <p>
+              El balcón es generoso — espacio suficiente para desayunar con toda la familia mientras ven las olas romper en Playa Blanca. Los atardeceres desde acá son inolvidables.
+            </p>
+
+            <h3>Distribución de camas</h3>
+            <p>
+              <strong>Cuarto principal:</strong> 1 cama King con vista al mar<br>
+              <strong>Cuarto secundario:</strong> 2 camas Queen — ideal para familias con niños o grupos de amigos
+            </p>
+          </div>
+
+          <div class="amenities">
+            <h3>Comodidades</h3>
+            <div class="amenities-grid">
+              <div class="amenity">Balcón panorámico con vista al mar</div>
+              <div class="amenity">Cocina equipada completa</div>
+              <div class="amenity">Agua caliente (cocina y baño)</div>
+              <div class="amenity">Aire acondicionado</div>
+              <div class="amenity">WiFi de alta velocidad</div>
+              <div class="amenity">TV con streaming</div>
+              <div class="amenity">Ropa de cama premium</div>
+              <div class="amenity">Utensilios de cocina</div>
+              <div class="amenity">Entrada independiente</div>
+              <div class="amenity">2 espacios de parqueo</div>
+            </div>
+          </div>
+
+          <!-- CTA BANNER -->
+          <div class="cta-banner">
+            <div class="cta-banner-text">
+              <h3>¿Te interesa Villa Pelícano?</h3>
+              <p>Consultá disponibilidad y precios en Rentas Pura Vida</p>
+            </div>
+            <div class="cta-banner-actions">
+              <a href="https://rentaspuravida.com/rocamar" class="btn btn-primary" target="_blank">
+                Ver Disponibilidad
+              </a>
+              <a href="https://wa.me/50688888888?text=Hola,%20tengo%20una%20consulta%20sobre%20Villa%20Pelícano" class="whatsapp-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY -->
+  <section id="gallery" class="gallery-section">
+    <div class="wrap">
+      <header class="gallery-header">
+        <h2>Galería de fotos</h2>
+      </header>
+      <div class="gallery-grid">
+        <!-- Foto grande principal -->
+        <div class="gallery-item large">
+          <img src="/assets/mpvnaxc0-IMG_5009.jpg" alt="Sala con vista al mar">
+        </div>
+        <!-- Habitación principal -->
+        <div class="gallery-item">
+          <img src="/assets/mpvnb3gm-IMG_5013.jpg" alt="Habitación principal con cama King">
+        </div>
+        <!-- Segunda habitación -->
+        <div class="gallery-item">
+          <img src="/assets/mpvnbc9f-IMG_5019.jpg" alt="Segunda habitación con camas Queen">
+        </div>
+        <!-- Cocina -->
+        <div class="gallery-item">
+          <img src="/assets/mpvnbhqz-IMG_5020.jpg" alt="Cocina equipada">
+        </div>
+        <!-- Baño -->
+        <div class="gallery-item">
+          <img src="/assets/mpvnbn8y-IMG_5027.jpg" alt="Baño moderno">
+        </div>
+        <!-- Vista balcón -->
+        <div class="gallery-item">
+          <img src="/assets/mpvnaq4g-IMG_5075.jpg" alt="Vista panorámica desde el balcón">
+        </div>
+        <!-- Detalles -->
+        <div class="gallery-item">
+          <img src="/assets/mpvnbq1p-IMG_5034.jpg" alt="Detalles del espacio">
+        </div>
+        <!-- Atardecer -->
+        <div class="gallery-item">
+          <img src="/assets/mpvncczg-IMG_5042.jpg" alt="Atardecer desde Pelícano">
+        </div>
+        <!-- Interior -->
+        <div class="gallery-item">
+          <img src="/assets/mpvncikq-IMG_5064.jpg" alt="Interior de la villa">
+        </div>
+        <!-- Vista exterior -->
+        <div class="gallery-item">
+          <img src="/assets/mpvncmzy-IMG_5072.jpg" alt="Vista exterior">
+        </div>
+        <!-- WhatsApp photos -->
+        <div class="gallery-item">
+          <img src="/assets/mpvnavo3-WhatsApp-Image-2025-06-21-at-2.41.51-PM.jpeg" alt="Vista de la propiedad">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/mpvnavyb-WhatsApp-Image-2025-06-21-at-2.42.53-PM.jpeg" alt="Área común">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER VILLAS -->
+  <section class="other-villas">
+    <div class="wrap">
+      <header class="other-villas-header">
+        <h2>Otras villas en Rocamar</h2>
+        <p>Cada villa tiene entrada independiente y privacidad total</p>
+      </header>
+      <div class="other-villas-grid">
+        <a href="villa-garza.html" class="other-villa-card">
+          <div class="other-villa-img">
+            <img src="/assets/mpvkd69t-IMG_4879.jpg" alt="Villa Garza">
+          </div>
+          <div class="other-villa-content">
+            <h3>Villa Garza</h3>
+            <p>Balcón con vista al mar, perfecta para parejas o familias pequeñas.</p>
+            <div class="other-villa-meta">
+              <span>5 huéspedes</span>
+              <span>2 habitaciones</span>
+              <span>1 baño</span>
+            </div>
+          </div>
+        </a>
+        <a href="villa-iguana.html" class="other-villa-card">
+          <div class="other-villa-img">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--cream-dark), var(--border));display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">Foto próximamente</div>
+          </div>
+          <div class="other-villa-content">
+            <h3>Villa Iguana</h3>
+            <p>Planta baja con acceso al jardín privado, terraza con vista al mar, y rancho techado.</p>
+            <div class="other-villa-meta">
+              <span>6-8 huéspedes</span>
+              <span>3 habitaciones</span>
+              <span>3 baños</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-brand">Rocamar</div>
+        <div class="footer-links">
+          <a href="landing.html">Inicio</a>
+          <a href="landing.html#villas">Villas</a>
+          <a href="landing.html#ubicacion">Ubicación</a>
+          <a href="landing.html#faq">FAQ</a>
+          <a href="https://wa.me/50688888888">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
