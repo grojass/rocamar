@@ -21,20 +21,24 @@ Open Design project (devbox, :7456)
           → sudo /usr/local/sbin/rocamar-deploy  (rsync -av --delete dist/ → /var/www/rocamar/)
 ```
 
-OD project ids (`.sync-projects.conf` on devbox): `f4760ea0-…` → `main`, `ad8d1545-…` → `v2`, `54c9de53-…` → `garza`, `974a012e-…` → `pelicano`, `66671205-…` → `iguana`. A slug is also the URL: `main` is `/`, everything else is `/<slug>/`.
+OD project ids (`.sync-projects.conf` on devbox): `f4760ea0-…` → `main`, `ad8d1545-…` → `v2`, `277de0ec-…` → `garza`, `34055b2e-…` → `pelicano`, `00bdf4d6-…` → `iguana`. A slug is also the URL: `main` is `/`, everything else is `/<slug>/`.
 
-### The OD app in the browser is not the store the sync reads
+### Where Open Design actually runs
 
-There are **two separate Open Design data stores on devbox**, and they do not talk to each other:
+OD runs as the docker container `open-design`, published on `127.0.0.1:7456`, with Caddy in front of it at `https://10.0.1.160` (self-signed cert from `~/tools/certs/`). `~/rocamar/{start,stop}.sh` → `~/tools/od-{start,stop}.sh` drive that container and check the port afterwards instead of assuming.
 
-| | |
-|---|---|
-| `~/tools/open-design/.od/projects/<uuid>/` | host directory — **this is what `od-sync.sh` reads and what ships** |
-| docker volume `open-design_open_design_data`, mounted at `/app/.od` | what the OD app at `https://10.0.1.160` actually serves and edits |
+Its store is a bind mount of `~/tools/open-design/.od` — the same directory `od-sync.sh` reads — and the container runs as uid 1000 so it can write there. **That coupling is the point: what you edit in the browser is what ships.**
 
-OD runs as the docker container `open-design` (published on `127.0.0.1:7456`); the host install predates that and was left behind. So the browser UI shows projects whose files live nowhere near the ones being deployed: the container's `projects/` is empty, and its sqlite knows only the villa projects, not `main` or `v2`. **Editing a design in the browser will not reach the site, and the pages that are live cannot be opened in the UI.** Until the container is re-pointed at the host directory (a bind mount instead of the named volume), design changes have to be made as file edits under the host path.
+It has not always been true. Until 2026-09-21 the container mounted a named volume instead, so the UI and the sync worked on different files: the container's `projects/` was empty, its database knew nothing about `main` or `v2`, and design changes made in the browser could never reach the site. Nothing signalled the split — the UI worked, the sync worked, each on its own files. If the UI ever stops showing the projects listed above, check the mount first:
 
-`~/rocamar/{start,stop}.sh` → `~/tools/od-{start,stop}.sh` drive the container and verify the port afterwards rather than assuming.
+```bash
+docker inspect open-design --format '{{range .Mounts}}{{.Type}} {{.Source}} → {{.Destination}}{{end}}'
+# want: bind /home/grojas/tools/open-design/.od → /app/.od
+```
+
+The compose file is `~/tools/open-design/deploy/docker-compose.yml`. The container that ran until then had been created from `~/rocamar/design/deploy/docker-compose.yml`, a path that no longer exists — so treat a running container as no evidence that its definition is still on disk. The old volume `open-design_open_design_data` is still declared but unmounted, so its data survives.
+
+A project's design system is fixed when the project is created; there is no setting for it afterwards, and the picker resets to the default on every page load. Pick it before typing the name.
 
 Two consequences worth internalizing:
 
