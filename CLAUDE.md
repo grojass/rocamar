@@ -53,7 +53,7 @@ Two consequences worth internalizing:
 - A patch applied by hand in `public/` survives until the next `./sync.sh` and then vanishes silently — HTML is copied whole-file, so there is no conflict and no warning. The durable place for a content or markup change is the **Open Design project**, which lives only on devbox at `~/tools/open-design/.od/projects/<uuid>/`.
 - `/var/www/rocamar` on prod is further downstream still, and the rsync runs with `--delete`: any file created there that is not in `dist/` is removed on the next deploy. It is also web-served, so anything left there is public.
 
-The clone at `/home/rocamar/app` on prod is a deploy-side checkout, not a place to develop. The development clone is `/home/grojas/rocamar/web` on devbox (10.0.1.160); the surrounding `~/rocamar/{Caddyfile,sync.sh,certs,.od-site.conf,.sync-projects.conf}` is dev tooling outside the repo.
+The clone at `/home/rocamar/app` on prod is a deploy-side checkout, not a place to develop. The development clone is `/home/grojas/rocamar/web` on devbox (10.0.1.160); the surrounding `~/rocamar/{sync.sh,start.sh,stop.sh,.od-site.conf,.sync-projects.conf}` is dev tooling outside the repo.
 
 ### What sync does to the files
 
