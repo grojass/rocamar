@@ -399,6 +399,34 @@
       text-transform: uppercase;
       color: var(--ink);
     }
+    .villa-status {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 6px 12px;
+      background: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .villa-status.soon {
+      background: rgba(255,255,255,0.92);
+      color: var(--muted);
+    }
+    /* Las villas que todavía no se alquilan siguen visibles, con menos peso. */
+    .villa-card.soon .villa-image img {
+      filter: saturate(0.55);
+      opacity: 0.85;
+    }
+    .villa-card.soon:hover .villa-image img {
+      filter: none;
+      opacity: 1;
+    }
+    .villa-card.soon .villa-link {
+      color: var(--muted);
+    }
     .villa-body {
       padding: 28px 24px;
     }
@@ -787,10 +815,10 @@
     <div class="hero-content">
       <p class="hero-eyebrow">Playa Blanca · Costa Rica</p>
       <h1>Best Day On The Beach</h1>
-      <p class="hero-lead">Tres villas independientes frente al Pacífico. Alquilá una para total privacidad, o las tres para toda la familia.</p>
+      <p class="hero-lead">Tres villas independientes frente al Pacífico, cada una con entrada propia y vista al mar. Villa Garza ya está disponible para alquiler.</p>
       <div class="hero-cta">
-        <a href="https://rentaspuravida.com" target="_blank" rel="noopener" class="btn btn-primary">Consultar Disponibilidad</a>
-        <a href="#villas" class="btn btn-outline">Ver Villas</a>
+        <a href="villa-garza.html" class="btn btn-primary">Ver Villa Garza</a>
+        <a href="https://rentaspuravida.com" target="_blank" rel="noopener" class="btn btn-outline">Consultar Disponibilidad</a>
       </div>
     </div>
     <div class="scroll-hint">Scroll</div>
@@ -831,7 +859,7 @@
       <div class="villas-header reveal">
         <p class="section-eyebrow">Las Villas</p>
         <h2 class="section-title">Elegí Tu Espacio</h2>
-        <p class="villas-lead">Cada villa tiene su propio ritmo. Alquilá una para escaparte en pareja, dos para familias que viajan juntas, o las tres para reuniones de hasta 14 personas.</p>
+        <p class="villas-lead">Cada villa tiene su propio ritmo. Por ahora alquilamos Villa Garza; Pelícano e Iguana se suman más adelante.</p>
       </div>
 
       <div class="villas-grid">
@@ -840,6 +868,7 @@
           <div class="villa-image">
             <img src="/assets/mpvkd69t-IMG_4879.jpg" alt="Villa Garza — sala con vista al mar desde el balcón" style="aspect-ratio:4/3; object-fit:cover;">
             <span class="villa-tag">Planta Alta</span>
+            <span class="villa-status">Disponible</span>
           </div>
           <div class="villa-body">
             <h3 class="villa-name">Garza</h3>
@@ -858,10 +887,11 @@
         </article>
 
         <!-- Pelícano -->
-        <article class="villa-card reveal">
+        <article class="villa-card soon reveal">
           <div class="villa-image">
             <img src="/assets/mpvnaxc0-IMG_5009.jpg" alt="Villa Pelícano - Sala con vista al mar" style="width:100%;height:100%;object-fit:cover;">
             <span class="villa-tag">Planta Alta</span>
+            <span class="villa-status soon">Próximamente</span>
           </div>
           <div class="villa-body">
             <h3 class="villa-name">Pelícano</h3>
@@ -874,16 +904,17 @@
             </div>
             <div class="villa-footer">
               <span class="villa-capacity">Capacidad: <strong>6 personas</strong></span>
-              <a href="villa-pelicano.html" class="villa-link">Ver más →</a>
+              <a href="villa-pelicano.html" class="villa-link">Ver detalles →</a>
             </div>
           </div>
         </article>
 
         <!-- Iguana -->
-        <article class="villa-card reveal">
+        <article class="villa-card soon reveal">
           <div class="villa-image">
             <img src="/assets/iguana-jardin-panoramica.jpeg" alt="Villa Iguana — jardín privado y rancho techado">
             <span class="villa-tag">Planta Baja</span>
+            <span class="villa-status soon">Próximamente</span>
           </div>
           <div class="villa-body">
             <h3 class="villa-name">Iguana</h3>
@@ -896,7 +927,7 @@
             </div>
             <div class="villa-footer">
               <span class="villa-capacity">Capacidad: <strong>6-8 personas</strong></span>
-              <a href="villa-iguana.html" class="villa-link">Ver más →</a>
+              <a href="villa-iguana.html" class="villa-link">Ver detalles →</a>
             </div>
           </div>
         </article>
